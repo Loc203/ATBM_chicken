@@ -22,12 +22,20 @@ public class KhachHangDAO {
     public static KhachHang getKhachHangByEmail(String email) {
         Optional<KhachHang> khachHang = JDBIConnector.me().withHandle((handle ->
                 handle.createQuery("select maKH, tenKH,email, matKhau,soDT,gioiTinh,ngaySinh, diaChi, maTC from khachhang where tenKH=?")
-                        .bind(2, email)
+                        .bind(0, email)
                         .mapToBean(KhachHang.class).stream().findFirst()
         ));
         return khachHang.isEmpty() ? null : khachHang.get();
     }
 
+    public KhachHang getUserByEmail(String email) {
+        Optional<KhachHang> khachHang = JDBIConnector.me().withHandle((handle ->
+                handle.createQuery("select maKH, tenKH,email, matKhau,soDT,gioiTinh,ngaySinh, diaChi, maTC from khachhang where email=?")
+                        .bind(0, email)
+                        .mapToBean(KhachHang.class).stream().findFirst()
+        ));
+        return khachHang.isEmpty() ? null : khachHang.get();
+    }
     // đăng nhập email
     public KhachHang login(String email, String password) {
         JDBI = JDBIConnector.me();
