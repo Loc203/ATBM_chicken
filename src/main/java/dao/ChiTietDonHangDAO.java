@@ -108,4 +108,8 @@ public class ChiTietDonHangDAO {
                         .list()
         );
     }
+
+    public static void main(String[] args) {
+        System.out.println(ChiTietDonHangDAO.getCTDHByMaDH(49556));
+    }
 }

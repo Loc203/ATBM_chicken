@@ -74,7 +74,7 @@ public class DonHangDAO {
 
 
     public static boolean addDonHang(DonHang donHang) {
-        String sql = "insert into donhang values(?,?,?,?,?,?,?,?,?)";
+        String sql = "insert into donhang values(?,?,?,?,?,?,?,?,?,?)";
 
         try {
             int res = JDBIConnector.me().withHandle(handle ->
@@ -88,6 +88,7 @@ public class DonHangDAO {
                             .bind(6, donHang.getTrangThai())
                             .bind(7, donHang.getThanhToan())
                             .bind(8, donHang.getPhiVanChuyen())
+                            .bind(9, Optional.ofNullable(null))
                             .execute()
             );
             return res > 0;

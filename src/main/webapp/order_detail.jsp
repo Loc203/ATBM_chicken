@@ -1,10 +1,13 @@
 <%@ page import="model.ChiTiet_DonHang" %>
 <%@ page import="java.util.List" %>
 <%@ page import="model.SanPham" %>
+<%@ page import="java.sql.Timestamp" %>
+<%@ page import="java.time.LocalDateTime" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     int maDH = (int) request.getAttribute("maDH");
-    String ngayDatHang = (String) request.getAttribute("ngayDatHang");
+    LocalDateTime ngayDatHang0 = (LocalDateTime) request.getAttribute("ngayDatHang");
+    Timestamp ngayDatHang = Timestamp.valueOf(ngayDatHang0);
     Double phiVanChuyen = (Double) request.getAttribute("phiVanChuyen");
     List<ChiTiet_DonHang> orderDetails = (List<ChiTiet_DonHang>) request.getAttribute("orderDetails");
     java.text.NumberFormat numberFormat = java.text.NumberFormat.getInstance(new java.util.Locale("vi", "VN"));

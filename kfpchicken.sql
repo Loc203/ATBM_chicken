@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th12 14, 2024 lúc 07:09 PM
+-- Thời gian đã tạo: Th12 14, 2024 lúc 10:50 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -117,7 +117,16 @@ INSERT INTO `chitiet_donhang` (`maDH`, `maSP`, `soLuongDatHang`, `thueVAT`, `ton
 (39845, 6, 3, 0.1, 161700),
 (77223, 4, 1, 0.1, 130900),
 (89129, 16, 1, 0.1, 306900),
-(89129, 14, 1, 0.1, 174900);
+(89129, 14, 1, 0.1, 174900),
+(49556, 16, 1, 0.1, 306900),
+(49556, 11, 1, 0.1, 104500),
+(9300, 3, 1, 0.1, 53900),
+(80206, 5, 1, 0.1, 218900),
+(75318, 6, 1, 0.1, 53900),
+(54268, 3, 1, 0.1, 53900),
+(71496, 6, 1, 0.1, 53900),
+(93321, 7, 1, 0.1, 196900),
+(2855, 28, 1, 0.1, 361900);
 
 -- --------------------------------------------------------
 
@@ -131,21 +140,30 @@ CREATE TABLE `donhang` (
   `maKH` int(10) DEFAULT NULL,
   `diaChiNhanHang` varchar(255) DEFAULT NULL,
   `soDienThoai` varchar(50) DEFAULT NULL,
-  `ngayDatHang` datetime DEFAULT NULL,
-  `ngayNhanHang` datetime DEFAULT NULL,
+  `ngayDatHang` timestamp NULL DEFAULT current_timestamp(),
+  `ngayNhanHang` timestamp NULL DEFAULT NULL,
   `trangThai` varchar(50) DEFAULT 'Chưa giao',
   `thanhToan` varchar(50) DEFAULT NULL,
-  `phiVanChuyen` double DEFAULT NULL
+  `phiVanChuyen` double DEFAULT NULL,
+  `signature` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `donhang`
 --
 
-INSERT INTO `donhang` (`maDH`, `maKH`, `diaChiNhanHang`, `soDienThoai`, `ngayDatHang`, `ngayNhanHang`, `trangThai`, `thanhToan`, `phiVanChuyen`) VALUES
-(39845, 7, 'Phường Linh Trung, Thành phố Thủ Đức, Hồ Chí Minh', '944126980', '2024-07-14 13:39:23', '2024-07-14 15:39:23', 'Chưa Giao', 'Chưa thanh toán', 51503),
-(77223, 8, 'Phường Linh Trung, Thành phố Thủ Đức, Hồ Chí Minh', '342761815', '2024-12-14 23:47:44', '2024-12-15 01:47:44', 'Chưa Giao', 'Chưa thanh toán', 51503),
-(89129, 8, 'Phường Linh Trung, Thành phố Thủ Đức, Hồ Chí Minh', '342761815', '2024-12-14 23:51:23', '2024-12-15 01:51:23', 'Đang Giao', 'Chưa Thanh Toán', 51503);
+INSERT INTO `donhang` (`maDH`, `maKH`, `diaChiNhanHang`, `soDienThoai`, `ngayDatHang`, `ngayNhanHang`, `trangThai`, `thanhToan`, `phiVanChuyen`, `signature`) VALUES
+(2855, 11, 'Phường Linh Trung, Thành phố Thủ Đức, Hồ Chí Minh', '342761815', '2024-12-14 21:47:55', '2024-12-14 23:47:55', 'Chưa Giao', 'Chưa thanh toán', 51503, NULL),
+(9300, 11, 'Phường Linh Trung, Thành phố Thủ Đức, Hồ Chí Minh', '342761815', '2024-12-14 18:17:57', '2024-12-14 20:17:57', 'Chưa Giao', 'Chưa thanh toán', 51503, NULL),
+(39845, 7, 'Phường Linh Trung, Thành phố Thủ Đức, Hồ Chí Minh', '944126980', '2024-07-14 06:39:23', '2024-07-14 08:39:23', 'Chưa Giao', 'Chưa thanh toán', 51503, NULL),
+(49556, 11, 'Phường Linh Trung, Thành phố Thủ Đức, Hồ Chí Minh', '342761815', '2024-12-14 18:17:12', '2024-12-14 20:17:12', 'Chưa Giao', 'Chưa thanh toán', 51503, NULL),
+(54268, 11, 'Phường Linh Trung, Thành phố Thủ Đức, Hồ Chí Minh', '342761815', '2024-12-14 21:15:55', '2024-12-14 23:15:55', 'Chưa Giao', 'Chưa thanh toán', 51503, NULL),
+(71496, 11, 'Phường Linh Trung, Thành phố Thủ Đức, Hồ Chí Minh', '342761815', '2024-12-14 21:40:39', '2024-12-14 23:40:39', 'Chưa Giao', 'Chưa thanh toán', 51503, NULL),
+(75318, 9, 'Phường Linh Trung, Thành phố Thủ Đức, Hồ Chí Minh', '342761815', '2024-12-14 18:56:30', '2024-12-14 20:56:30', 'Chưa Giao', 'Chưa thanh toán', 51503, NULL),
+(77223, 8, 'Phường Linh Trung, Thành phố Thủ Đức, Hồ Chí Minh', '342761815', '2024-12-14 16:47:44', '2024-12-14 18:47:44', 'Chưa Giao', 'Chưa thanh toán', 51503, NULL),
+(80206, 9, 'Phường Linh Trung, Thành phố Thủ Đức, Hồ Chí Minh', '342761815', '2024-12-14 18:54:11', '2024-12-14 20:54:11', 'Chưa Giao', 'Chưa thanh toán', 51503, NULL),
+(89129, 8, 'Phường Linh Trung, Thành phố Thủ Đức, Hồ Chí Minh', '342761815', '2024-12-14 16:51:23', '2024-12-14 18:51:23', 'Đang Giao', 'Chưa Thanh Toán', 51503, NULL),
+(93321, 11, 'Phường Linh Trung, Thành phố Thủ Đức, Hồ Chí Minh', '342761815', '2024-12-14 21:43:28', '2024-12-14 23:43:28', 'Chưa Giao', 'Chưa thanh toán', 51503, NULL);
 
 -- --------------------------------------------------------
 
@@ -238,7 +256,26 @@ INSERT INTO `log` (`id`, `level`, `ip`, `address`, `beforeValue`, `afterValue`, 
 (62, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng ký tài khoản', 'Tài khoản tranlocmom@gmail.com đăng ký thành công nhưng chưa xác thực', '2024-12-15 00:49:17'),
 (63, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Tài khoản tranlocmom@gmail.com chưa xác thực', 'Tài khoản tranlocmom@gmail.com xác thực thành công', '2024-12-15 00:49:39'),
 (64, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng ký tài khoản', 'Tài khoản tranlocmom@gmail.com đăng ký thành công nhưng chưa xác thực', '2024-12-15 00:58:16'),
-(65, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Tài khoản tranlocmom@gmail.com chưa xác thực', 'Tài khoản tranlocmom@gmail.com xác thực thành công', '2024-12-15 00:58:27');
+(65, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Tài khoản tranlocmom@gmail.com chưa xác thực', 'Tài khoản tranlocmom@gmail.com xác thực thành công', '2024-12-15 00:58:27'),
+(66, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-15 01:16:10'),
+(67, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 11,tenKH: loc hehe,email: tranlocmom@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 1,}', '2024-12-15 01:16:39'),
+(68, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'null', '{maDH: 49556,maKH: 11,diaChiNhanHang: Phường Linh Trung, Thành phố Thủ Đức, Hồ Chí Minh,soDienThoai: 342761815,ngayDatHang: 2024-12-15T01:17:12.845798300,ngayNhanHang: 2024-12-15T03:17:12.845798300,trangThai: Chưa Giao,thanhToan: Chưa thanh toán,phiVanChuyen: 51503.0}', '2024-12-15 01:17:12'),
+(69, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'null', '{maDH: 9300,maKH: 11,diaChiNhanHang: Phường Linh Trung, Thành phố Thủ Đức, Hồ Chí Minh,soDienThoai: 342761815,ngayDatHang: 2024-12-15T01:17:57.745093,ngayNhanHang: 2024-12-15T03:17:57.745093,trangThai: Chưa Giao,thanhToan: Chưa thanh toán,phiVanChuyen: 51503.0}', '2024-12-15 01:17:57'),
+(70, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-15 01:18:09'),
+(71, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-15 01:34:13'),
+(72, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-15 01:38:53'),
+(73, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'null', '{maDH: 80206,maKH: 9,diaChiNhanHang: Phường Linh Trung, Thành phố Thủ Đức, Hồ Chí Minh,soDienThoai: 342761815,ngayDatHang: 2024-12-15T01:54:11.477868600,ngayNhanHang: 2024-12-15T03:54:11.477868600,trangThai: Chưa Giao,thanhToan: Chưa thanh toán,phiVanChuyen: 51503.0}', '2024-12-15 01:54:11'),
+(74, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'null', '{maDH: 75318,maKH: 9,diaChiNhanHang: Phường Linh Trung, Thành phố Thủ Đức, Hồ Chí Minh,soDienThoai: 342761815,ngayDatHang: 2024-12-15T01:56:30.733981200,ngayNhanHang: 2024-12-15T03:56:30.733981200,trangThai: Chưa Giao,thanhToan: Chưa thanh toán,phiVanChuyen: 51503.0}', '2024-12-15 01:56:30'),
+(75, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 11,tenKH: loc hehe,email: tranlocmom@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 1,}', '2024-12-15 02:38:23'),
+(76, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 11,tenKH: loc hehe,email: tranlocmom@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 1,}', '2024-12-15 04:04:32'),
+(77, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'null', '{maDH: 54268,maKH: 11,diaChiNhanHang: Phường Linh Trung, Thành phố Thủ Đức, Hồ Chí Minh,soDienThoai: 342761815,ngayDatHang: 2024-12-15T04:15:55.558431300,ngayNhanHang: 2024-12-15T06:15:55.558431300,trangThai: Chưa Giao,thanhToan: Chưa thanh toán,phiVanChuyen: 51503.0}', '2024-12-15 04:15:55'),
+(78, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 11,tenKH: loc hehe,email: tranlocmom@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 1,}', '2024-12-15 04:23:41'),
+(79, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 11,tenKH: loc hehe,email: tranlocmom@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 1,}', '2024-12-15 04:24:34'),
+(80, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'null', '{maDH: 71496,maKH: 11,diaChiNhanHang: Phường Linh Trung, Thành phố Thủ Đức, Hồ Chí Minh,soDienThoai: 342761815,ngayDatHang: 2024-12-15T04:40:39.662138400,ngayNhanHang: 2024-12-15T06:40:39.662138400,trangThai: Chưa Giao,thanhToan: Chưa thanh toán,phiVanChuyen: 51503.0}', '2024-12-15 04:40:39'),
+(81, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 11,tenKH: loc hehe,email: tranlocmom@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 1,}', '2024-12-15 04:42:53'),
+(82, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'null', '{maDH: 93321,maKH: 11,diaChiNhanHang: Phường Linh Trung, Thành phố Thủ Đức, Hồ Chí Minh,soDienThoai: 342761815,ngayDatHang: 2024-12-15T04:43:28.307137700,ngayNhanHang: 2024-12-15T06:43:28.307137700,trangThai: Chưa Giao,thanhToan: Chưa thanh toán,phiVanChuyen: 51503.0}', '2024-12-15 04:43:28'),
+(83, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 11,tenKH: loc hehe,email: tranlocmom@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 1,}', '2024-12-15 04:45:43'),
+(84, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'null', '{maDH: 2855,maKH: 11,diaChiNhanHang: Phường Linh Trung, Thành phố Thủ Đức, Hồ Chí Minh,soDienThoai: 342761815,ngayDatHang: 2024-12-15T04:47:55.907151400,ngayNhanHang: 2024-12-15T06:47:55.907151400,trangThai: Chưa Giao,thanhToan: Chưa thanh toán,phiVanChuyen: 51503.0}', '2024-12-15 04:47:55');
 
 -- --------------------------------------------------------
 
@@ -284,20 +321,20 @@ CREATE TABLE `sanpham` (
 INSERT INTO `sanpham` (`maSP`, `tenSP`, `giaGoc`, `giaGiam`, `soLuongTonKho`, `moTa`, `maTL`, `maAnh`) VALUES
 (1, 'Combo B - Gà giòn sốt me', 257000, 199000, 0, '- 2 Miếng gà giòn sốt me\r\n- 2 Miếng gà có xương (lựa chọn vị cay/ không cay)\r\n- 1 Khoai tây nghiền', 1, 1),
 (2, 'Combo A - Gà Giòn Sốt Me', 143000, 119000, 0, '- 2 Miếng gà giòn sốt me\r\n- 1 Bắp cải trộn cỡ tiêu chuẩn\r\n- 1 Chai nước ngọt Coca-Cola 390ml', 1, 2),
-(3, '1 miếng Gà Giòn Sốt Me', 49000, 0, 23, '', 1, 3),
+(3, '1 miếng Gà Giòn Sốt Me', 49000, 0, 21, '', 1, 3),
 (4, 'Combo A - Gà Sốt Bơ Tỏi & Thảo Mộc', 155000, 119000, 24, '- 2 Miếng gà sốt bơ tỏi và thảo mộc\r\n- 1 Bánh quy bơ mật ong\r\n- 1 Món ăn kèm tiêu chuẩn tùy chọn (Bắ', 2, 4),
-(5, 'Combo B - Gà Sốt Bơ Tỏi & Thảo Mộc', 257000, 199000, 22, '- 2 Miếng gà sốt bơ tỏi và thảo mộc\r\n- 1 Bánh quy bơ mật ong\r\n- 1 Món ăn kèm tiêu chuẩn tùy chọn (Bắ', 2, 5),
-(6, '1 miếng Gà Sốt Bơ Tỏi & Thảo Mộc', 49000, 0, 22, '', 2, 6),
-(7, '4 miếng Gà Sốt Bơ Tỏi & Thảo Mộc', 196000, 179000, 25, '- 4 Miếng gà sốt bơ tỏi và thảo mộc\r\n- 3 Tương ớt + 1 tương cà', 2, 7),
+(5, 'Combo B - Gà Sốt Bơ Tỏi & Thảo Mộc', 257000, 199000, 21, '- 2 Miếng gà sốt bơ tỏi và thảo mộc\r\n- 1 Bánh quy bơ mật ong\r\n- 1 Món ăn kèm tiêu chuẩn tùy chọn (Bắ', 2, 5),
+(6, '1 miếng Gà Sốt Bơ Tỏi & Thảo Mộc', 49000, 0, 20, '', 2, 6),
+(7, '4 miếng Gà Sốt Bơ Tỏi & Thảo Mộc', 196000, 179000, 24, '- 4 Miếng gà sốt bơ tỏi và thảo mộc\r\n- 3 Tương ớt + 1 tương cà', 2, 7),
 (8, '7 miếng Gà Sốt Bơ Tỏi & Thảo Mộc', 343000, 299000, 0, '- 7 Miếng gà sốt bơ tỏi và thảo mộc\r\n- 5 Tương ớt + 2 tương cà', 2, 8),
 (9, 'Combo Giòn Tan A', 104000, 95000, 25, '- 2 Miếng gà rán có xương (lựa chọn vị cay/ không cay)\r\n- 1 Nước ngọt\r\n- 2 Tương ớt + 1 Tương cà', 3, 9),
 (10, 'Combo Giòn Tan B', 105000, 95000, 25, '1 Miếng gà rán có xương (lựa chọn vị cay/ không cay)\r\n- 2 Miếng gà giòn không xương (lựa chọn vị cay', 3, 10),
-(11, 'Combo Giòn Tan C', 105000, 95000, 25, '- 1 Miếng gà rán có xương (lựa chọn vị cay/ không cay)\r\n- 2 Khuỷu cánh gà cay\r\n- 1 Nước ngọt\r\n- 2 Tư', 3, 11),
+(11, 'Combo Giòn Tan C', 105000, 95000, 24, '- 1 Miếng gà rán có xương (lựa chọn vị cay/ không cay)\r\n- 2 Khuỷu cánh gà cay\r\n- 1 Nước ngọt\r\n- 2 Tư', 3, 11),
 (12, 'Combo Giòn Tan D', 114000, 95000, 25, '- 1 Miếng gà rán có xương (lựa chọn vị cay/ không cay)\r\n- 1 Bánh cuộn gà không xương ( lựa chọn vị c', 3, 12),
 (13, 'Combo VUI VẺ A', 179000, 159000, 25, '- 2 Miếng gà rán có xương (lựa chọn vị cay/ không cay)\r\n- 1 Burger tôm (lựa chọn vị cay/ không cay)\r', 4, 13),
 (14, 'Combo VUI VẺ B', 194000, 159000, 24, '- 2 Miếng gà rán có xương (lựa chọn vị cay/ không cay)\r\n- 2 Miếng gà giòn không xương (lựa chọn vị c', 4, 14),
 (15, 'Combo VUI VẺ C', 218000, 189000, 25, '- 3 Miếng gà rán có xương (lựa chọn vị cay/ không cay)\r\n- 1 Khoai tây chiên phô mai\r\n- 2 Nước ngọt\r\n', 4, 15),
-(16, 'Combo Nhóm A', 351000, 279000, 24, '- 5 Miếng gà rán có xương (lựa chọn vị cay/ không cay)\r\n- 1 Bánh cuộn Zesty Crunch (lựa chọn vị cay/', 5, 16),
+(16, 'Combo Nhóm A', 351000, 279000, 23, '- 5 Miếng gà rán có xương (lựa chọn vị cay/ không cay)\r\n- 1 Bánh cuộn Zesty Crunch (lựa chọn vị cay/', 5, 16),
 (17, 'Combo VUI VẺ D', 257000, 199000, 25, '- 3 Miếng gà rán có xương (lựa chọn vị cay/ không cay)\r\n- 1 Burger gà cổ điển\r\n- 1 Khoai tây chiên v', 4, 17),
 (18, 'Combo Nhóm B', 504000, 389000, 24, '- 7 Miếng gà rán có xương (lựa chọn vị cay/ không cay)\r\n- 1 Burger gà cổ điển\r\n- 1 Bánh cuộn gà giòn', 5, 18),
 (19, 'Combo Nhóm C', 608000, 499000, 25, '- 9 Miếng gà rán có xương (lựa chọn vị cay/ không cay)\r\n- 1 Burger tôm (lựa chọn vị cay/ không cay)\r', 5, 19),
@@ -309,7 +346,7 @@ INSERT INTO `sanpham` (`maSP`, `tenSP`, `giaGoc`, `giaGiam`, `soLuongTonKho`, `m
 (25, 'Combo CƠM GÀ GIÒN KHÔNG XƯƠNG', 75000, 59000, 25, '- 2 Miếng gà giòn không xương sốt chua ngọt\r\n- 1 Cơm trắng+ salad\r\n- 1 Nước ngọt\r\n- 1 Tương ớt', 7, 25),
 (26, 'Combo CƠM KHUỶU CÁNH GÀ & GÀ GIÒN KHÔNG XƯƠNG', 75000, 59000, 25, '- 1 Miếng gà giòn không xương\r\n- 1 Khuỷu cánh gà sốt chua ngọt\r\n- 1 Cơm trắng+ salad\r\n- 1 Nước ngọt\r', 7, 26),
 (27, 'CHICKEN BOX – 5 MIẾNG GÀ RÁN', 195000, 189000, 25, '- 5 Miếng gà rán có xương (lựa chọn vị cay/ không cay)\r\n- 4 Tương ớt + 2 Tương cà', 8, 27),
-(28, 'CHICKEN BOX – 9 MIẾNG GÀ RÁN', 351000, 329000, 25, '- 9 Miếng gà rán có xương (lựa chọn vị cay/ không cay)\r\n- 8 Tương ớt + 4 Tương cà', 8, 28),
+(28, 'CHICKEN BOX – 9 MIẾNG GÀ RÁN', 351000, 329000, 24, '- 9 Miếng gà rán có xương (lựa chọn vị cay/ không cay)\r\n- 8 Tương ớt + 4 Tương cà', 8, 28),
 (29, 'CHICKEN BOX – 12 MIẾNG GÀ RÁN', 468000, 419000, 25, '- 12 Miếng gà rán có xương (lựa chọn vị cay/ không cay)\r\n- 10 Tương ớt + 5 Tương cà', 8, 29),
 (30, 'GÀ RÁN CÓ XƯƠNG – 1 MIẾNG', 39000, 0, 25, '- 1 Miếng gà rán có xương (lựa chọn vị cay/ không cay)\r\n- 1 Tương ớt + 1 Tương cà', 9, 30),
 (31, 'GÀ GIÒN KHÔNG XƯƠNG – 6 MIẾNG', 95000, 0, 25, '- 6 Miếng gà giòn không xương (lựa chọn vị cay/ không cay)\r\n - 1 Sốt mù tạt mật ong\r\n- 2 Tương ớt + ', 9, 31),
@@ -511,7 +548,7 @@ ALTER TABLE `khachhang`
 -- AUTO_INCREMENT cho bảng `log`
 --
 ALTER TABLE `log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
 -- AUTO_INCREMENT cho bảng `nguyenlieu`

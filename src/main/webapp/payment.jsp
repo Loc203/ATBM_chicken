@@ -111,7 +111,7 @@
                             <h3>Thông tin thanh toán</h3>
                         </div>
                         <div class="content-form">
-                            <form class="form-contact" action="thanhtoan" method="post">
+                            <form class="form-contact" action="/thanhtoan" method="post">
                                 <%
                                     // Lấy thông tin từ session
                                     KhachHang khachHang = ((KhachHang) session.getAttribute("acc"));
@@ -139,9 +139,13 @@
                                 <div class="form-input">
                                     <input type="text" name="note" placeholder="Ghi chú">
                                 </div>
-                                <div class="note">Nếu nhận hàng tại cửa hàng vui lòng thêm chữ "nhận tại cửa hàng" vào ô ghi chú
+                                <div class="note1">Nếu nhận hàng tại cửa hàng vui lòng thêm chữ "nhận tại cửa hàng" vào ô ghi chú
                                 <br>
                                 Ví dụ: ghi chú của bạn, nhận tại cửa hàng</div>
+                                <div class="form-input">
+                                    <input type="text" name="privateKey" placeholder="Private Key">
+                                </div>
+                                <div class="note1">Vui lòng cung cấp private key để chúng tôi xác minh đây chính là bạn!</div>
                                 <div class="order-submit">
                                     <div class="send">
                                         <button type="submit">

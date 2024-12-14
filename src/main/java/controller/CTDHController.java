@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class CTDHController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int maDH = Integer.parseInt(request.getParameter("maDH"));
-        String ngayDatHang = request.getParameter("ngayDatHang");
+        LocalDateTime ngayDatHang = LocalDateTime.parse(request.getParameter("ngayDatHang"));
         double phiVanChuyen = Double.parseDouble(request.getParameter("phiVanChuyen"));
 
         List<ChiTiet_DonHang> orderDetails = ChiTietDonHangService.getCTDHByMaDH(maDH);
