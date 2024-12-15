@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="./assets/css/responsive.css">
     <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.4.2-web/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="./assets/css/payment.css">
     <title>Thanh toán khi nhận hàng</title>
 </head>
@@ -111,7 +112,8 @@
                             <h3>Thông tin thanh toán</h3>
                         </div>
                         <div class="content-form">
-                            <form class="form-contact" action="/thanhtoan" method="post">
+<%--                            action="/thanhtoan" method="post"--%>
+                            <form id="paymentForm" class="form-contact">
                                 <%
                                     // Lấy thông tin từ session
                                     KhachHang khachHang = ((KhachHang) session.getAttribute("acc"));
@@ -139,13 +141,14 @@
                                 <div class="form-input">
                                     <input type="text" name="note" placeholder="Ghi chú">
                                 </div>
-                                <div class="note1">Nếu nhận hàng tại cửa hàng vui lòng thêm chữ "nhận tại cửa hàng" vào ô ghi chú
+                                <div class="note">Nếu nhận hàng tại cửa hàng vui lòng thêm chữ "nhận tại cửa hàng" vào ô ghi chú
                                 <br>
                                 Ví dụ: ghi chú của bạn, nhận tại cửa hàng</div>
                                 <div class="form-input">
                                     <input type="text" name="privateKey" placeholder="Private Key">
                                 </div>
-                                <div class="note1">Vui lòng cung cấp private key để chúng tôi xác minh đây chính là bạn!</div>
+                                <div class="note">Vui lòng cung cấp private key để chúng tôi xác minh đây chính là bạn!</div>
+                                <div id="errorMessage" style="color: red;"></div>
                                 <div class="order-submit">
                                     <div class="send">
                                         <button type="submit">
@@ -163,5 +166,35 @@
     <!-- Begin: Footer -->
     <%@include file="footer.jsp"%>
     <!-- End: Footer -->
+
+    <script>
+        $(document).ready(function () {
+            $("#paymentForm").on("submit", function (e) {
+                e.preventDefault(); // Ngăn form gửi theo cách thông thường
+
+                // Lấy dữ liệu từ form
+                const formData = $(this).serialize();
+
+                // Gửi dữ liệu qua AJAX
+                $.ajax({
+                    url: "/thanhtoan", // Đường dẫn đến Servlet
+                    type: "post",
+                    data: formData,
+                    success: function (response) {
+                        if (response === "valid") {
+                            // Nếu dữ liệu hợp lệ, chuyển sang trang thành công
+                            window.location.href = "/trangchu";
+                        } else {
+                            // Hiển thị thông báo lỗi nếu không hợp lệ
+                            $("#errorMessage").text(response);
+                        }
+                    },
+                    error: function () {
+                        alert("Đã xảy ra lỗi! Vui lòng thử lại.");
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>

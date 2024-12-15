@@ -2,6 +2,7 @@ package controller;
 
 import Cart.GioHang;
 import Cart.GioHangSanPham;
+import dao.ChiTietDonHangDAO;
 import dao.DonHangDAO;
 import dao.UserkeyDAO;
 import entity.ElectronicSignature;
@@ -126,12 +127,16 @@ public class ThanhToanController extends HttpServlet {
         try {
             isValid = ElectronicSignature.checkSignature(publicKeyUser.getPublicKey(), data, signature);
         } catch (NoSuchAlgorithmException e) {
+            resp.getWriter().write("Đã xảy ra lỗi khi kiểm tra chữ ký: " + e.getMessage());
             throw new RuntimeException(e);
         } catch (InvalidKeySpecException e) {
+            resp.getWriter().write("Đã xảy ra lỗi khi kiểm tra chữ ký: " + e.getMessage());
             throw new RuntimeException(e);
         } catch (InvalidKeyException e) {
+            resp.getWriter().write("Đã xảy ra lỗi khi kiểm tra chữ ký: " + e.getMessage());
             throw new RuntimeException(e);
         } catch (SignatureException e) {
+            resp.getWriter().write("Đã xảy ra lỗi khi kiểm tra chữ ký: " + e.getMessage());
             throw new RuntimeException(e);
         }
 
@@ -178,11 +183,34 @@ public class ThanhToanController extends HttpServlet {
                     ctdh.setThanhTien(thanhTien);
                     ChiTietDonHangService.getInstance().addCTDH(ctdh);
                 }
+
+                List<ChiTiet_DonHang> ctdh = ChiTietDonHangService.getCTDHByMaDH(maDH);
+                String ctdhString = ctdh.toString();
+                System.out.println(ctdhString);
+                String orderSignature;
+                try {
+                    orderSignature = ElectronicSignature.doSignature(privateKey,ctdhString);
+                } catch (NoSuchAlgorithmException e) {
+                    throw new RuntimeException(e);
+                } catch (InvalidKeySpecException e) {
+                    throw new RuntimeException(e);
+                } catch (InvalidKeyException e) {
+                    throw new RuntimeException(e);
+                } catch (SignatureException e) {
+                    throw new RuntimeException(e);
+                }
+
+                DonHangDAO.addOrderSignatureByOrederId(maDH, orderSignature);
+
+
                 gioHang.clear();
                 info = "Cảm ơn bạn đã đặt hàng ở cửa hàng chúng tôi";
                 req.setAttribute("info", info);
-                resp.sendRedirect("trangchu");
+                resp.getWriter().write("valid");
+//                resp.sendRedirect("trangchu");
             }
+        } else {
+            resp.getWriter().write("Chữ ký không hợp lệ. Vui lòng kiểm tra lại khóa riêng tư!");
         }
     }
 }

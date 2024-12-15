@@ -72,6 +72,22 @@ public class DonHangDAO {
     }
 
 
+    public static boolean addOrderSignatureByOrederId(int orderId, String signature){
+        String sql = "UPDATE donhang SET signature = ? WHERE maDH = ?";
+
+        try {
+            int res = JDBIConnector.me().withHandle(handle ->
+                    handle.createUpdate(sql)
+                            .bind(0, signature)
+                            .bind(1, orderId)
+                            .execute()
+            );
+            return res > 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     public static boolean addDonHang(DonHang donHang) {
         String sql = "insert into donhang values(?,?,?,?,?,?,?,?,?,?)";
@@ -173,7 +189,7 @@ public class DonHangDAO {
         }
     }
     public static DonHang getOrderById(int id) {
-        String sql = "SELECT maDH, maKH, diaChiNhanHang, ngayDatHang, ngayNhanHang, trangThai, thanhToan, phiVanChuyen FROM donhang WHERE maDH = ?";
+        String sql = "SELECT maDH, maKH, diaChiNhanHang, ngayDatHang, ngayNhanHang, trangThai, thanhToan, phiVanChuyen, signature FROM donhang WHERE maDH = ?";
 
         try {
             Optional<DonHang> optionalDonHang = JDBIConnector.me().withHandle(handle ->
