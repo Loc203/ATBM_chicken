@@ -71,7 +71,7 @@ public class UserkeyDAO {
         return keyUsers.isEmpty() ? null : keyUsers;
     }
 
-    public List<PublicKeyUser> findAllKey() throws SQLException {
+    public static List<PublicKeyUser> findAllKey() throws SQLException {
         String query = "SELECT * FROM userkey";
         List<PublicKeyUser> keyUsers = JDBIConnector.me().withHandle(handle -> {
             return handle.createQuery(query)

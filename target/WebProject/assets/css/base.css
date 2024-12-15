@@ -1,0 +1,98 @@
+:root {
+    --white-color: #fff;
+    --black-color: #000;
+    --text-color: #333;
+    --header-color: #f8b02d;
+    --background-header-color: #2c2925;
+    --primary-color: #9a3324;
+    --sale-color: #999999;
+    --about-us-background-color: #2d2926;
+    --about-us-color: #a39382;
+
+}
+
+* {
+    box-sizing: inherit;
+}
+
+html {
+    /* HACK */
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #F5F5F5;
+    -webkit-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #333333;
+    -webkit-transition: all 0.3s linear;
+    -o-transition: all 0.3s linear;
+    transition: all 0.3s linear;
+    border-radius: 10px;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* Common */
+
+.btn {
+    width: 215px;
+    height: 34px;
+}
+
+.btn-add-to-cart,
+.btn-buy-now {
+    text-align: center;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    font-size: 1.4rem;
+    margin: 0 8px;
+    padding: 8px 8px;
+    border-radius: 10px;
+    transition: all .3s linear;
+    font-weight: 600;
+    line-height: 1.6rem;
+    text-decoration: none;
+}
+
+.btn-add-to-cart:hover,
+.btn-buy-now:hover {
+    color: var(--primary-color);
+    background-color: var(--header-color);
+}
+
+.btn a{
+    display: block;
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: 500;
+    width: 100%;
+    text-align: center;
+    color: var(--white-color);
+    background: var(--primary-color);
+    padding: 10px 20px 8px;
+    border-radius: 10px;
+}
+
+.btn a:hover {
+    color: var(--primary-color);
+    background: var(--header-color);
+    transition: all .3s linear;
+}
