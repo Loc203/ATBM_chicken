@@ -283,7 +283,6 @@
                                                 <tr>
                                                     <th>Mã Khách Hàng</th>
                                                     <th>Tên Khách Hàng</th>
-                                                    <th>alert</th>
                                                     <th>Email</th>
                                                     <th>Password</th>
                                                     <th>Số ĐT</th>
@@ -522,9 +521,48 @@
                     render: function (data, type, row) {
                         return '<a href="#"><i class="fa-solid fa-trash" style="color: red;font-size: 2.0rem"></i></a>';
                     }
+                },
+                {
+                    data: 'alertKey',
+                    render: function (data) {
+                        if (data === 0) {
+                            return '<a href="#" onclick="notifyAdminForKey()"><i class="fa-solid fa-key" style="color: orange; font-size: 2.0rem;"></i></a>';
+                        }
+                        return '';
+                    }
                 }
             ]
         });
+        window.notifyAdminForKey = function () {
+            var element = event.currentTarget;
+            var row = $(element).closest('tr');
+            var userEmail = row.find('td:eq(2)').text().trim();
+            var maKH = row.find('td:eq(0)').text().trim();
+
+            console.log('Email:', userEmail);
+            console.log('User ID:', maKH);
+
+            $.ajax({
+                url: 'CreateKeyController',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    email: userEmail,
+                    userID: maKH
+                },
+                success: function (response) {
+                    alert('Đã thêm key cho người dùng.');
+
+                    if (response.refresh) {
+                        location.reload();
+                    }
+                },
+                error: function () {
+                    console.error('Error notifying admin for key.');
+                }
+            });
+        };
+
         //Xử lý chức năng edit và lấy dữ liệu từ dataTable qua edit
         $('#example tbody').on('click', 'td.edit', function () {
             var rowIndex = table.cell($(this)).index().row;
