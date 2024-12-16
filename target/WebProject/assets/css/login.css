@@ -1,0 +1,212 @@
+/*body*/
+.all-form{
+    box-sizing: border-box !important;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.login-register_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* padding-top:30px; */
+    margin:0;
+    min-height: 120vh;
+    font-size: 1.9rem;
+}
+
+.background-login_img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+}
+.footer-form{
+    display: flex;
+    position: absolute;
+    width: 100%;
+ }
+
+ #header{
+     position: absolute !important;
+ }
+
+/* khung bao form đăng nhập*/
+.login-form_container{
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 29px;
+    height: 444px;
+    background-color: var(--white-color);
+    font-family: 'Roboto',sans-serif;
+    margin-left: 800px;
+    z-index: 0;
+
+}
+
+/* css header */
+.login-form_header{
+    display: flex;
+    justify-content: space-around;
+    font-size: 2.2rem;
+    font-weight: 400;
+    color: var(--header-color);
+    margin-bottom: 32px;
+}
+.login-form_heading{
+    position: absolute;
+    font-weight: bold;
+}
+
+/* css form group */
+.login-form_group{
+    margin-top:19px;
+}
+/* css input */
+
+.login-form_input{
+    width: 100%;
+    margin-top: 8px;
+    height: 38px;
+    outline: none;
+}
+.login-form input{
+    padding: 10px 15px;
+    outline: none;
+    border: 1px solid #ccc;
+    font-size: 1.4rem;
+    border-radius: 4px;
+}
+
+.login-form_input:focus{
+    border-color: #777;
+}
+
+/* button đăng nhập */
+.login-btn{
+    display: block;
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: 500;
+    width: 100%;
+    text-align: center;
+    color: var(--white-color);
+    background: var(--header-color);
+    padding: 10px 20px 8px;
+    margin-top: 20px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    transition: all .3s linear;
+    cursor: pointer;
+}
+
+.login-btn:hover{
+    background-color: var(--primary-color);
+
+}
+
+.forget-change-password{
+    padding: 5px 5px;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.forget-change-password a:hover {
+    color: var(--header-color);
+    transition: all .3s linear;
+}
+
+.forget-password:hover{
+    cursor: pointer;
+    opacity: 0.9;
+}
+/* css cho đăng nhập facebook, google*/
+
+ .login-form_socials{
+    /* margin-top: 32px; */
+    padding: 16px 16px;
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.login-form_socials a{
+    text-decoration: none;
+    color: black;
+}
+
+.login-btn--with-icon{
+    font-size: 1.2rem;
+}
+
+.login-btn--with-icon--facebook{
+    border: 10px solid #F8F8FF;
+    border-radius: 5px;
+    background-color:  #f8f8ff;
+}
+.login-btn--with-icon--google{
+    border: 10px solid #F8F8FF;
+    background-color:  #f8f8ff;
+    border-radius: 5px;
+}
+
+.fa-google {
+    background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+
+}
+
+.register{
+    display: flex;
+    justify-content: center;
+    /* margin-top: 32px; */
+}
+.register h3{
+    font-size: 1.8rem;
+}
+
+.google-text{
+    font-size: 1.6rem;
+}
+
+.fa-google {
+    background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    display: flex;
+    margin-top: 14px;
+    font-size: 26px;
+}
+.register {
+    margin-top: -16px;
+    padding-left: 10px;
+    text-decoration: none;
+}
+
+.login-form_container{
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    padding: 29px;
+    height: 454px;
+    background-color: var(--white-color);
+    font-family: 'Roboto',sans-serif;
+    margin-left: 800px;
+    z-index: 0;
+
+}
+
+.register a:hover{
+    opacity: 0.7;
+    cursor: pointer;
+    color: var(--header-color);
+    transition: all .3s linear;
+}
+
+/*css cho google*/
+

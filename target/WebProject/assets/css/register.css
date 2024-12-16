@@ -1,0 +1,165 @@
+/*body*/
+.all-form{
+    box-sizing: border-box !important;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.login-register_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top:30px;
+    margin:0;
+    min-height: 130vh;
+    font-size: 1.9rem;
+
+}
+
+.background-login_img{
+    position: absolute;
+    width: 100%;
+    height: 130%;
+    z-index: -1;
+
+}
+.footer-form{
+    position: absolute;
+    width: 100%;
+    z-index: 5;
+}
+
+#header{
+    position: absolute !important;
+}
+
+/* khung bao form đăng ký */
+.register-form_container{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 29px;
+    width: 431px;
+    height: 580px;
+    /* height: 453px; */
+    background-color: var(--white-color);
+    font-family: 'Roboto',sans-serif;
+    margin-left: 800px;
+    z-index: 0;
+
+}
+
+/* css header */
+.register-form_header{
+    display: flex;
+    justify-content: space-around;
+    font-size: 2.2rem;
+    font-weight: 400;
+}
+.register-form_heading{
+    position: absolute;
+    font-weight: bold;
+    color: var(--header-color);
+}
+
+/* css phần input*/
+.register-form_input{
+    width: 100%;
+    margin-top: 19px;
+    height: 38px;
+    outline: none;
+    font-size: 1.9rem;
+    font-weight: 400;
+}
+.register-form_input:focus{
+    border-color: #777;
+}
+
+.register-form input{
+    padding: 10px 15px;
+    outline: none;
+    border: 1px solid #ccc;
+    font-size: 1.4rem;
+    border-radius: 4px;
+}
+
+/* button đăng ký */
+.register-btn{
+    display: block;
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: 500;
+    width: 100%;
+    text-align: center;
+    color: var(--white-color);
+    background: var(--header-color);
+    padding: 10px 20px 8px;
+    margin-top: 3px;
+    border-radius: 10px;
+    transition: all .3s linear;
+    outline: none;
+    border: none;
+}
+
+.register-btn:hover{
+    opacity: 0.9;
+    cursor: pointer;
+    background-color: var(--primary-color);
+}
+.register{
+    display: flex;
+    justify-content: center;
+}
+.register h3{
+    font-size: 1.8rem;
+}
+
+.register a:hover{
+    opacity: 0.7;
+    cursor: pointer;
+    transition: all .3s linear;
+    color: var(--header-color);
+}
+
+
+/* css cho số điện thoại và giới tính*/
+.register-form_input--col {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.register-form_input--col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 7px;
+}
+
+.register-form_group--col {
+    width: 48%; /* hoặc có thể sử dụng calc(50% - 5px) nếu bạn muốn tạo khoảng trắng giữa chúng */
+}
+
+/* Nếu bạn muốn có khoảng cách giữa chúng */
+.register-form_group--col + .register-form_group--col {
+    margin-left: 4%; /* Điều này tạo khoảng cách giữa chúng */
+}
+
+.google-text{
+    font-size: 1.6rem;
+}
+.fa-google {
+    background: conic-gradient(from -45deg, #ea4335 110deg, #4285f4 90deg 180deg, #34a853 180deg 270deg, #fbbc05 270deg) 73% 55%/150% 150% no-repeat;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    display: flex;
+    margin-top: 14px;
+    font-size: 26px;
+}
+.register {
+    margin-top: -16px;
+    padding-left: 10px;
+    text-decoration: none;
+}
+
