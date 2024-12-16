@@ -521,9 +521,32 @@
                     render: function (data, type, row) {
                         return '<a href="#"><i class="fa-solid fa-trash" style="color: red;font-size: 2.0rem"></i></a>';
                     }
+                },
+                {
+                    data: 'alertKey',
+                    render: function (data) {
+                        if (data === 0) {
+                            return '<a href="#" onclick="notifyAdminForKey()"><i class="fa-solid fa-key" style="color: orange; font-size: 2.0rem;"></i></a>';
+                        }
+                        return '';
+                    }
                 }
             ]
         });
+        // Function to handle the key notification
+        window.notifyAdminForKey = function () {
+            $.ajax({
+                url: 'AlertCreateKeyController',
+                type: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    alert('Đã thêm key cho người dùng.');
+                },
+                error: function () {
+                    console.error('Error notifying admin for key.');
+                }
+            });
+        }
         //Xử lý chức năng edit và lấy dữ liệu từ dataTable qua edit
         $('#example tbody').on('click', 'td.edit', function () {
             var rowIndex = table.cell($(this)).index().row;

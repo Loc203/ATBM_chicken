@@ -283,6 +283,7 @@
                                                 <tr>
                                                     <th>Mã Khách Hàng</th>
                                                     <th>Tên Khách Hàng</th>
+                                                    <th>alert</th>
                                                     <th>Email</th>
                                                     <th>Password</th>
                                                     <th>Số ĐT</th>
