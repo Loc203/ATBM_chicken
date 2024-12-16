@@ -43,6 +43,16 @@
      <%@include file="header.jsp"%>
     <!-- End: Header -->
 
+    <!-- Popup hiển thị thông báo vô hiệu khóa -->
+    <!-- Overlay làm mờ -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Popup -->
+    <div class="popup" id="popup">
+        <p id="popupMessage"></p>
+        <button class="close-btn" onclick="closePopup()">Đóng</button>
+    </div>
+
     <!-- Begin: Container -->
     <div class="app__content">
         <!-- Begin: Slider -->
@@ -315,21 +325,22 @@
         }
     });
 
-    nextDom.onclick = function (){
+    nextDom.onclick = function () {
         showSlider('next');
     }
 
-    prevDom.onclick = function (){
+    prevDom.onclick = function () {
         showSlider('prev');
     }
 
     let timeRunning = 3000;
     let timeAutoNext = 7000;
     let runTimeOut;
-    let runAutoRun = setTimeout(()=>{
+    let runAutoRun = setTimeout(() => {
         nextDom.click();
     }, timeAutoNext);
-    function showSlider(type){
+
+    function showSlider(type) {
         let itemSlider = document.querySelectorAll('.carousel .list .item');
         let itemThumbnail = document.querySelectorAll('.carousel .thumbnail .item');
 
@@ -338,7 +349,7 @@
             thumbnailDom.appendChild(itemThumbnail[0]);
             carouselDom.classList.add('next');
         } else {
-            let positionLastItem = itemSlider.length - 1 ;
+            let positionLastItem = itemSlider.length - 1;
             listItemDom.prepend(itemSlider[positionLastItem]);
             thumbnailDom.prepend(itemThumbnail[positionLastItem]);
             carouselDom.classList.add('prev');
@@ -353,13 +364,52 @@
         itemSlider[0].querySelector('.slider-content').style.display = 'block';
 
         clearTimeout(runTimeOut);
-        runTimeOut = setTimeout(()=> {
+        runTimeOut = setTimeout(() => {
             carouselDom.classList.remove('next');
             carouselDom.classList.remove('prev');
         }, timeRunning);
 
         clearTimeout(runAutoRun);
 
+    }
+
+        // JavaScript hiển thị popup
+        window.onload = function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const message = urlParams.get('message');
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        const popupMessage = document.getElementById('popupMessage');
+
+        if (message === 'success') {
+        popupMessage.textContent = 'Khóa đã được vô hiệu hóa thành công';
+        popupMessage.style.color = 'green';
+        showPopup();
+    } else if (message === 'failure') {
+        popupMessage.textContent = 'Không thể vô hiệu hóa khóa';
+        popupMessage.style.color = 'red';
+        showPopup();
+    } else if (message === 'not_found') {
+        popupMessage.textContent = 'Không tìm thấy thông tin tài khoản trong session';
+        popupMessage.style.color = 'orange';
+        showPopup();
+    }
+    };
+
+        // Hiển thị popup
+        function showPopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        popup.classList.add('active');
+        overlay.classList.add('active');
+    }
+
+        // Đóng popup
+        function closePopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        popup.classList.remove('active');
+        overlay.classList.remove('active');
     }
 </script>
 </body>

@@ -72,7 +72,9 @@
                                 </i>
                             </a>
                             <div class="account__info">
-                                <a href="logout" class="account_setting">Đổi tài khoản</a>
+                                <a href="logout" class="account_setting" style="margin-top: -10%;">Đổi tài khoản</a>
+                                <a href="reportkey" class="account_setting" style="margin-top: 4%;">Báo cáo khóa</a>
+
                             </div>
                         </li>
                     </ul>
