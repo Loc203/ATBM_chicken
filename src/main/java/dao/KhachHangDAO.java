@@ -471,6 +471,15 @@ public class KhachHangDAO {
 
         return false;
     }
+    public static boolean updateAlert(int maKH){
+        String updateQuery = "UPDATE khachhang SET alertKey = 0 WHERE maKH = ?";
+        int rowsAffected = JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate(updateQuery)
+                        .bind(0, maKH)
+                        .execute()
+        );
+        return rowsAffected > 0;
+    }
 
     public static boolean deleteKhachHang(KhachHang khachHang) {
         String deleteQuery = "DELETE FROM khachhang WHERE maKH = ?";
@@ -693,5 +702,4 @@ public class KhachHangDAO {
             return null;
         }
     }
-
 }

@@ -13,4 +13,8 @@ public class UserKeyService {
         return instance;
     }
     public List<PublicKeyUser> findAllKey() throws SQLException {return UserkeyDAO.findAllKey();}
+
+    public List<PublicKeyUser> findAllKeyByUserId(int userId) throws SQLException {return UserkeyDAO.findAllKeyByUserId(userId);}
+
+    public PublicKeyUser findKeyActiveByUserId(int userId) throws SQLException {return UserkeyDAO.findKeyActiveByUserId(userId);}
 }

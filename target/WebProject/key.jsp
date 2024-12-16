@@ -330,9 +330,6 @@
 <!--End: Footer-->
 <script type="text/javascript">
   $(document).ready(function () {
-    $('#addBtn').on('click', function () {
-      $('#addDataModal').modal('show');
-    });
     let table = $('#dataTable').DataTable({
       layout: {
         topStart: {
@@ -408,6 +405,7 @@
     $('#publicKeyContent').text(publicKey);
     $('#publicKeyModal').modal('show');
   }
+
 
 </script>
 

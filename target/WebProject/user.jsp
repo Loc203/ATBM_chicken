@@ -72,7 +72,9 @@
                                 </i>
                             </a>
                             <div class="account__info">
-                                <a href="logout" class="account_setting">Đổi tài khoản</a>
+                                <a href="logout" class="account_setting" style="margin-top: -10%;">Đổi tài khoản</a>
+                                <a href="reportkey" class="account_setting" style="margin-top: 4%;">Báo cáo khóa</a>
+
                             </div>
                         </li>
                     </ul>
@@ -123,7 +125,7 @@
                                 <a class="sb-item" href="xemdonhang">
                                     <span class="sbi-content">Xem đơn hàng</span>
                                 </a>
-                                <a class="sb-item" href="xemdonhang">
+                                <a class="sb-item" href="userKey.jsp">
                                     <span class="sbi-content">Yêu cầu khóa mới</span>
                                 </a>
                             </div>

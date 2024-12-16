@@ -330,9 +330,6 @@
 <!--End: Footer-->
 <script type="text/javascript">
   $(document).ready(function () {
-    $('#addBtn').on('click', function () {
-      $('#addDataModal').modal('show');
-    });
     let table = $('#dataTable').DataTable({
       layout: {
         topStart: {
@@ -369,23 +366,13 @@
             }
           }
         },
-        {
+        {{
           data: 'isActive',
           render: function (data, type, row) {
             if (data === 1) {
-              return `
-                <button class="btn btn-secondary btn-sm" disabled>
-                  Tạo mới
-                </button>
-              `;
+              return `<span style="color: green; font-weight: bold;">Key đang hoạt động</span>`;
             } else {
-              return `
-                <button
-                  class="btn btn-success btn-sm"
-                  onclick="createNewKey(${row.id})">
-                  Tạo mới
-                </button>
-              `;
+              return `<span style="color: red; font-weight: bold;">Key đã vô hiệu hóa</span>`;
             }
           }
         }
@@ -408,6 +395,7 @@
     $('#publicKeyContent').text(publicKey);
     $('#publicKeyModal').modal('show');
   }
+
 
 </script>
 

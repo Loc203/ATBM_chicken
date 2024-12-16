@@ -50,7 +50,7 @@ public class UserkeyDAO {
         return isActive == 1;
     }
 
-    public PublicKeyUser findKeyActiveByUserId(int userId) throws SQLException {
+    public static PublicKeyUser findKeyActiveByUserId(int userId) throws SQLException {
         String query = "SELECT * FROM userkey WHERE user_id = ? AND isActive =1 LIMIT 1";
         return JDBIConnector.me().withHandle(handle -> {
             return handle.createQuery(query)
@@ -60,7 +60,7 @@ public class UserkeyDAO {
                     .orElse(null); // Nếu không tìm thấy, trả về null
         });
     }
-    public List<PublicKeyUser> findAllKeyByUserId(int userId) throws SQLException {
+    public static List<PublicKeyUser> findAllKeyByUserId(int userId) throws SQLException {
         String query = "SELECT * FROM userkey WHERE user_id = ?";
         List<PublicKeyUser> keyUsers = JDBIConnector.me().withHandle(handle -> {
             return handle.createQuery(query)

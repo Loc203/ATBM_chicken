@@ -41,16 +41,9 @@ public class KhachHangService {
         if(!khachHangByEmail.getEmail().equals(email)||khachHangByEmail.getMatKhau().equals(matKhau)) return null;
         return khachHangByEmail;
     }
+    public boolean updateAlert(int maKH){return KhachHangDAO.updateAlert(maKH);}
 
 
     public static void main(String[] args) {
-//         List<KhachHang> khachHangs = JDBIConnector.me().withHandle((handle -> {
-//            return handle.createQuery("select * from khachhang").mapToBean(KhachHang.class).collect(Collectors.toList()
-//            );
-//        }));
-//        System.out.println(khachHangs);
-        KhachHang kh = new KhachHang(2, "Lâm Hồng Phúc", "21130477@st.hcmuaf.edu.vn","123", "123456789", "Nam", Date.valueOf("2003-01-01"), null, 5);
-        boolean editKH= KhachHangService.getInstance().updateKhachHang(kh);
-        System.out.println(editKH);
     }
 }

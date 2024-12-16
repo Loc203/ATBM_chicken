@@ -125,7 +125,7 @@
                                 <a class="sb-item" href="xemdonhang">
                                     <span class="sbi-content">Xem đơn hàng</span>
                                 </a>
-                                <a class="sb-item" href="xemdonhang">
+                                <a class="sb-item" href="userKey.jsp">
                                     <span class="sbi-content">Yêu cầu khóa mới</span>
                                 </a>
                             </div>

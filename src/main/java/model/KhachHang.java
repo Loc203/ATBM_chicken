@@ -25,6 +25,8 @@ public class KhachHang extends AbsModel implements Serializable, IModel {
 
     private TruyCap truyCap;
 
+    private int alertKey;
+
     public KhachHang(){}
 
     public KhachHang(String email, String matKhau) {
@@ -49,6 +51,18 @@ public class KhachHang extends AbsModel implements Serializable, IModel {
         this.ngaySinh = ngaySinh;
         this.diaChi = diaChi;
         this.maTC = maTC;
+    }
+    public KhachHang(int maKH, String tenKH, String email, String matKhau, String soDT, String gioiTinh, Date ngaySinh, String diaChi, int maTC, int alertKey) {
+        this.maKH = maKH;
+        this.tenKH = tenKH;
+        this.email = email;
+        this.matKhau = matKhau;
+        this.soDT = soDT;
+        this.gioiTinh = gioiTinh;
+        this.ngaySinh = ngaySinh;
+        this.diaChi = diaChi;
+        this.maTC = maTC;
+        this.alertKey = alertKey;
     }
     public KhachHang(int maKH, String tenKH, String email, String matKhau, String soDT, String gioiTinh, Date ngaySinh, String diaChi, TruyCap truyCap) {
         this.maKH = maKH;
@@ -226,5 +240,13 @@ public class KhachHang extends AbsModel implements Serializable, IModel {
                 + "diaChi: " + diaChi + ","
                 + "maTC: " + maTC + ","
                 + "}";
+    }
+
+    public int getAlertKey() {
+        return alertKey;
+    }
+
+    public void setAlertKey(int alertKey) {
+        this.alertKey = alertKey;
     }
 }
