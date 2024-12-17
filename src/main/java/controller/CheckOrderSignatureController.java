@@ -69,10 +69,14 @@ public class CheckOrderSignatureController extends HttpServlet {
 
         if (isValid){
             resp.getWriter().write("Valid");
+            resp.sendRedirect("orders.jsp?message=success");
             return;
+
         }else {
             resp.getWriter().write("inValid");
+            resp.sendRedirect("orders.jsp?message=failure");
             return;
+
         }
     }
 }

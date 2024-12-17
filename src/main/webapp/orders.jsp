@@ -103,6 +103,17 @@
                         </a>
                     </div>
                 </div>
+
+                <!-- Popup hiển thị thông báo vô hiệu khóa -->
+                <!-- Overlay làm mờ -->
+                <div class="overlay" id="overlay"></div>
+
+                <!-- Popup -->
+                <div class="popup" id="popup">
+                    <p id="popupMessage"></p>
+                    <button class="close-btn" onclick="closePopup()">Đóng</button>
+                </div>
+
                 <div class="navbar__content">
                     <ul class="navbar__list">
 
@@ -540,39 +551,39 @@
                 }
             ]
         });
-        window.checkOrderSignature = function () {
-            var element = event.currentTarget;
-            var table = $('#dataTable').DataTable();
-            var row = table.row($(element).closest('tr'));
-            var rowData = row.data();
-
-            var orderID = rowData.maDH;
-            var userID = rowData.maKH;
-            var signature = rowData.signature;
-
-            console.log(orderID);
-            console.log(userID);
-            console.log(signature);
-            $.ajax({
-                url: "CheckOrderSignatureController", // Đường dẫn đến Servlet
-                type: "POST",
-                data: {maDH : orderID, maKH : userID},
-                success: function (response) {
-                    if (response.trim() === "Valid") {
-                        // Nếu dữ liệu hợp lệ
-                        alert("Don hang hop le!.");
-                       // console.log("true");
-                    } else {
-                        // Hiển thị thông báo lỗi nếu không hợp lệ
-                        alert("Thong tin don hang da duoc thay doi, vui long kiem tra lai.");
-                       // console.log("false");
-                    }
-                },
-                error: function () {
-                    console.log("Da co loi xay ra!");
-                }
-            });
-        }
+        // window.checkOrderSignature = function () {
+        //     var element = event.currentTarget;
+        //     var table = $('#dataTable').DataTable();
+        //     var row = table.row($(element).closest('tr'));
+        //     var rowData = row.data();
+        //
+        //     var orderID = rowData.maDH;
+        //     var userID = rowData.maKH;
+        //     var signature = rowData.signature;
+        //
+        //     console.log(orderID);
+        //     console.log(userID);
+        //     console.log(signature);
+        //     $.ajax({
+        //         url: "CheckOrderSignatureController", // Đường dẫn đến Servlet
+        //         type: "POST",
+        //         data: {maDH : orderID, maKH : userID},
+        //         success: function (response) {
+        //             if (response.trim() === "Valid") {
+        //                 // Nếu dữ liệu hợp lệ
+        //                 alert("Don hang hop le!.");
+        //                // console.log("true");
+        //             } else {
+        //                 // Hiển thị thông báo lỗi nếu không hợp lệ
+        //                 alert("Thong tin don hang da duoc thay doi, vui long kiem tra lai.");
+        //                // console.log("false");
+        //             }
+        //         },
+        //         error: function () {
+        //             console.log("Da co loi xay ra!");
+        //         }
+        //     });
+        // }
         // Xử lý nút edit
         $('#dataTable tbody').on('click', 'td.edit', function () {
             var rowIndex = table.cell($(this)).index().row;
@@ -690,6 +701,46 @@
     function viewOrderDetails(maDH, ngayDatHang, phiVanChuyen) {
         window.location.href = 'CTDHController?maDH=' + maDH + '&ngayDatHang=' + ngayDatHang + '&phiVanChuyen=' + phiVanChuyen;
     }
+
+
+    // JavaScript hiển thị popup
+    window.onload = function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const message = urlParams.get('message');
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        const popupMessage = document.getElementById('popupMessage');
+
+        if (message === 'success') {
+            popupMessage.textContent = 'Đơn hàng hợp lệ';
+            popupMessage.style.color = 'green';
+            showPopup();
+        } else if (message === 'failure') {
+            popupMessage.textContent = 'Thông tin đơn hàng đã bị thay đổi, vui lòng kiểm tra lại';
+            popupMessage.style.color = 'red';
+            showPopup();
+        } else if (message === 'not_found') {
+            popupMessage.textContent = 'Không tìm thấy thông tin tài khoản trong session';
+            popupMessage.style.color = 'orange';
+            showPopup();
+        }
+    };
+
+    // Hiển thị popup
+    function showPopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        popup.classList.add('active');
+        overlay.classList.add('active');
+    }
+
+    // Đóng popup
+    function closePopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        popup.classList.remove('active');
+        overlay.classList.remove('active');
+    }
 </script>
 
 
@@ -718,6 +769,89 @@
 
     .btn-warning {
         width: 80px;
+    }
+
+    /* CSS cho popup */
+    .popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        display: none; /* Ẩn popup mặc định */
+    }
+
+    .popup.active {
+        display: block; /* Hiển thị popup khi có class 'active' */
+    }
+
+    .popup .close-btn {
+        margin-top: 10px;
+        padding: 5px 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .popup .close-btn:hover {
+        background-color: #0056b3;
+    }
+    /* CSS cho popup hiển thị thông báo khóa */
+    /* CSS overlay */
+    .popup {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 16%;
+        transform: translate(-50%, -50%);
+        z-index: 1000;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        display: none; /* Ẩn popup mặc định */
+    }
+
+    .popup.active {
+        display: block; /* Hiển thị popup khi có class 'active' */
+    }
+
+    .popup .close-btn {
+        margin-top: 10px;
+        padding: 5px 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .popup .close-btn:hover {
+        background-color: #0056b3;
+    }
+
+    /* CSS overlay */
+    .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        display: none; /* Ẩn overlay mặc định */
+    }
+
+    .overlay.active {
+        display: block; /* Hiển thị overlay khi có class 'active' */
     }
 </style>
 </body>
