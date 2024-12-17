@@ -40,7 +40,7 @@
     }
 
     .contact-form {
-        height: 600px;
+        height: 80vh;
         display: flex;
         justify-content: center;
         flex-direction: column;

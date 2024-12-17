@@ -6,6 +6,7 @@ import dao.UserkeyDAO;
 import entity.PublicKeyUser;
 import entity.RSA;
 import model.KhachHang;
+import service.UserKeyService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,11 +26,13 @@ public class CreateKeyController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
+            String userEmail = req.getParameter("email");
+            int userID = Integer.parseInt(req.getParameter("userID"));
+
             RSA rsa = new RSA(2048);
             String publicKey = rsa.exportPublicKey();
             String privateKey = rsa.exportPrivateKey();
 
-            String userEmail = req.getParameter("email");
 
             // Send the public key to the user via email
             SendEmail.sendMailKey(userEmail, publicKey, privateKey);
@@ -37,7 +40,7 @@ public class CreateKeyController extends HttpServlet {
             // Save the public key to the database for the user
             UserkeyDAO userkeyDAO = new UserkeyDAO();
             PublicKeyUser publicKeyUser = new PublicKeyUser();
-            publicKeyUser.setUser_id(Integer.parseInt(req.getParameter("userID")));
+            publicKeyUser.setUser_id(userID);
             publicKeyUser.setPublicKey(publicKey);
             publicKeyUser.setIsActive(1);
 
