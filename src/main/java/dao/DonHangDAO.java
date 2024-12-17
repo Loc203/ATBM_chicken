@@ -24,7 +24,7 @@ public class DonHangDAO {
 
     public static List<DonHang> getAll() {
         String query = "SELECT dh.maDH, dh.maKH, kh.tenKH, dh.diaChiNhanHang, dh.soDienThoai, " +
-                "dh.ngayDatHang, dh.ngayNhanHang, dh.trangThai, dh.thanhToan, dh.phiVanChuyen " +
+                "dh.ngayDatHang, dh.ngayNhanHang, dh.trangThai, dh.thanhToan, dh.phiVanChuyen, dh.signature " +
                 "FROM donhang dh " +
                 "JOIN khachhang kh ON dh.maKH = kh.maKH";
 
@@ -43,9 +43,10 @@ public class DonHangDAO {
                                 String trangThai = rs.getString("trangThai");
                                 String thanhToan = rs.getString("thanhToan");
                                 double phiVanChuyen = rs.getDouble("phiVanChuyen");
+                                String signature = rs.getString("signature");
 
                                 return new DonHang(maDH,maKH, diaChiNhanHang, soDienThoai,
-                                        ngayDatHang, ngayNhanHang, trangThai, thanhToan,tenKH, phiVanChuyen);
+                                        ngayDatHang, ngayNhanHang, trangThai, thanhToan,tenKH, phiVanChuyen, signature);
                             }).list());
         } catch (Exception e) {
             e.printStackTrace();
