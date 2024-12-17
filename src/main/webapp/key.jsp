@@ -366,7 +366,7 @@
             }
           }
         },
-        {{
+        {
           data: 'isActive',
           render: function (data, type, row) {
             if (data === 1) {
