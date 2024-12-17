@@ -546,8 +546,16 @@
                     data: 'null',
                     orderable: false,
                     className: "check", render: function (data, type, row) {
-                        return '<a href="#" onclick="checkOrderSignature()"><i class="fa-solid fa-magnifying-glass" style="color: lightgreen;font-size: 2.0rem"></i></a>';
+                        return '<form method="POST" action="CheckOrderSignatureController" style="display:inline;">' +
+                            '<input type="hidden" name="maDH" value="' + row.maDH + '">' +
+                            '<input type="hidden" name="maKH" value="' + row.maKH + '">' +
+                            '<button type="submit" style="background:none; border:none; cursor:pointer;">' +
+                            '<i class="fa-solid fa-magnifying-glass" style="color: lightgreen; font-size: 2.0rem;"></i>' +
+                            '</button>' +
+                            '</form>';
                     }
+
+
                 }
             ]
         });
@@ -572,11 +580,11 @@
         //             if (response.trim() === "Valid") {
         //                 // Nếu dữ liệu hợp lệ
         //                 alert("Don hang hop le!.");
-        //                // console.log("true");
+        //                 // console.log("true");
         //             } else {
         //                 // Hiển thị thông báo lỗi nếu không hợp lệ
         //                 alert("Thong tin don hang da duoc thay doi, vui long kiem tra lai.");
-        //                // console.log("false");
+        //                 // console.log("false");
         //             }
         //         },
         //         error: function () {
@@ -719,8 +727,8 @@
             popupMessage.textContent = 'Thông tin đơn hàng đã bị thay đổi, vui lòng kiểm tra lại';
             popupMessage.style.color = 'red';
             showPopup();
-        } else if (message === 'not_found') {
-            popupMessage.textContent = 'Không tìm thấy thông tin tài khoản trong session';
+        } else if (message === 'error') {
+            popupMessage.textContent = 'Có lỗi ngoài dự kiến đã xảy ra';
             popupMessage.style.color = 'orange';
             showPopup();
         }
