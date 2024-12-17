@@ -496,6 +496,10 @@
                     visible: false,
                 },
                 {
+                    data: 'signature',
+                    visible: false,
+                },
+                {
                     data: null,
                     orderable: false,
                     className: "edit", render: function (data, type, row) {
@@ -508,9 +512,30 @@
                     className: "delete", render: function (data, type, row) {
                         return '<a href="#"><i class="fa-solid fa-trash" style="color: red;font-size: 2.0rem"></i></a>';
                     }
+                },
+                {
+                    data: 'null',
+                    orderable: false,
+                    className: "check", render: function (data, type, row) {
+                        return '<a href="#" onclick="checkOrderSignature()"><i class="fa-solid fa-magnifying-glass" style="color: lightgreen;font-size: 2.0rem"></i></a>';
+                    }
                 }
             ]
         });
+        window.checkOrderSignature = function () {
+            var element = event.currentTarget;
+            var table = $('#dataTable').DataTable();
+            var row = table.row($(element).closest('tr'));
+            var rowData = row.data();
+
+            var orderID = rowData.maDH;
+            var userID = rowData.maKH;
+            var signature = rowData.signature;
+
+            console.log(orderID);
+            console.log(userID);
+            console.log(signature);
+        }
         // Xử lý nút edit
         $('#dataTable tbody').on('click', 'td.edit', function () {
             var rowIndex = table.cell($(this)).index().row;

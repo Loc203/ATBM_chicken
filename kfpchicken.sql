@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 16, 2024 at 04:46 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th12 14, 2024 lúc 10:50 PM
+-- Phiên bản máy phục vụ: 10.4.32-MariaDB
+-- Phiên bản PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `kfpchicken`
+-- Cơ sở dữ liệu: `kfpchicken`
 --
 CREATE DATABASE IF NOT EXISTS `kfpchicken` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
 USE `kfpchicken`;
@@ -26,7 +26,7 @@ USE `kfpchicken`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `anh`
+-- Cấu trúc bảng cho bảng `anh`
 --
 
 DROP TABLE IF EXISTS `anh`;
@@ -38,7 +38,7 @@ CREATE TABLE `anh` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `anh`
+-- Đang đổ dữ liệu cho bảng `anh`
 --
 
 INSERT INTO `anh` (`maAnh`, `maSP`, `duongDan`, `chuThich`) VALUES
@@ -95,7 +95,7 @@ INSERT INTO `anh` (`maAnh`, `maSP`, `duongDan`, `chuThich`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chitiet_donhang`
+-- Cấu trúc bảng cho bảng `chitiet_donhang`
 --
 
 DROP TABLE IF EXISTS `chitiet_donhang`;
@@ -108,7 +108,7 @@ CREATE TABLE `chitiet_donhang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `chitiet_donhang`
+-- Đang đổ dữ liệu cho bảng `chitiet_donhang`
 --
 
 INSERT INTO `chitiet_donhang` (`maDH`, `maSP`, `soLuongDatHang`, `thueVAT`, `tongTien`) VALUES
@@ -131,7 +131,7 @@ INSERT INTO `chitiet_donhang` (`maDH`, `maSP`, `soLuongDatHang`, `thueVAT`, `ton
 -- --------------------------------------------------------
 
 --
--- Table structure for table `donhang`
+-- Cấu trúc bảng cho bảng `donhang`
 --
 
 DROP TABLE IF EXISTS `donhang`;
@@ -149,7 +149,7 @@ CREATE TABLE `donhang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `donhang`
+-- Đang đổ dữ liệu cho bảng `donhang`
 --
 
 INSERT INTO `donhang` (`maDH`, `maKH`, `diaChiNhanHang`, `soDienThoai`, `ngayDatHang`, `ngayNhanHang`, `trangThai`, `thanhToan`, `phiVanChuyen`, `signature`) VALUES
@@ -168,7 +168,7 @@ INSERT INTO `donhang` (`maDH`, `maKH`, `diaChiNhanHang`, `soDienThoai`, `ngayDat
 -- --------------------------------------------------------
 
 --
--- Table structure for table `khachhang`
+-- Cấu trúc bảng cho bảng `khachhang`
 --
 
 DROP TABLE IF EXISTS `khachhang`;
@@ -183,23 +183,21 @@ CREATE TABLE `khachhang` (
   `diaChi` varchar(100) DEFAULT NULL,
   `maTC` int(10) DEFAULT 0,
   `code` varchar(50) DEFAULT NULL,
-  `picture` varchar(5000) DEFAULT NULL,
-  `alertKey` int(11) DEFAULT 1
+  `picture` varchar(5000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `khachhang`
+-- Đang đổ dữ liệu cho bảng `khachhang`
 --
 
-INSERT INTO `khachhang` (`maKH`, `tenKH`, `email`, `matkhau`, `soDT`, `gioiTinh`, `ngaySinh`, `diaChi`, `maTC`, `code`, `picture`, `alertKey`) VALUES
-(9, 'locadmin', 'tuitenlocbikhung@gmail.com', '$2a$10$658giiuzqmrE57DWfh5onOYlwOa3nLIkDSf06jtlmkGibXTMrEmp2', 342761815, 'Nam', '2024-12-17', 'tp.hcm ', 2, '289418', NULL, 0),
-(11, 'loc hehe', 'tranlocmom@gmail.com', '$2a$10$u7/pDNDUCau7hm1bhNMOn.M.r0vmzuUNs0Y4f3CuQDBfMNnvjgpl.', 342761815, 'Nam', '2024-12-01', 'tp.hcm ', 1, '450604', NULL, 1),
-(12, 'James', 'lamhongphuc0110@gmail.com', '$2a$10$nH7t/H/rxr4Gl11UQW52MuX6WAJG/RIPdUY/xGGtkxtXwrNGU.R2e', 123456789, 'Nam', '2024-12-01', 'abc', 1, '583420', NULL, 1);
+INSERT INTO `khachhang` (`maKH`, `tenKH`, `email`, `matkhau`, `soDT`, `gioiTinh`, `ngaySinh`, `diaChi`, `maTC`, `code`, `picture`) VALUES
+(9, 'locadmin', 'tuitenlocbikhung@gmail.com', '$2a$10$658giiuzqmrE57DWfh5onOYlwOa3nLIkDSf06jtlmkGibXTMrEmp2', 342761815, 'Nam', '2024-12-17', 'tp.hcm ', 2, '289418', NULL),
+(11, 'loc hehe', 'tranlocmom@gmail.com', '$2a$10$u7/pDNDUCau7hm1bhNMOn.M.r0vmzuUNs0Y4f3CuQDBfMNnvjgpl.', 342761815, 'Nam', '2024-12-01', 'tp.hcm ', 1, '450604', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `log`
+-- Cấu trúc bảng cho bảng `log`
 --
 
 DROP TABLE IF EXISTS `log`;
@@ -214,7 +212,7 @@ CREATE TABLE `log` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `log`
+-- Đang đổ dữ liệu cho bảng `log`
 --
 
 INSERT INTO `log` (`id`, `level`, `ip`, `address`, `beforeValue`, `afterValue`, `createAt`) VALUES
@@ -277,63 +275,12 @@ INSERT INTO `log` (`id`, `level`, `ip`, `address`, `beforeValue`, `afterValue`, 
 (81, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 11,tenKH: loc hehe,email: tranlocmom@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 1,}', '2024-12-15 04:42:53'),
 (82, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'null', '{maDH: 93321,maKH: 11,diaChiNhanHang: Phường Linh Trung, Thành phố Thủ Đức, Hồ Chí Minh,soDienThoai: 342761815,ngayDatHang: 2024-12-15T04:43:28.307137700,ngayNhanHang: 2024-12-15T06:43:28.307137700,trangThai: Chưa Giao,thanhToan: Chưa thanh toán,phiVanChuyen: 51503.0}', '2024-12-15 04:43:28'),
 (83, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 11,tenKH: loc hehe,email: tranlocmom@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 1,}', '2024-12-15 04:45:43'),
-(84, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'null', '{maDH: 2855,maKH: 11,diaChiNhanHang: Phường Linh Trung, Thành phố Thủ Đức, Hồ Chí Minh,soDienThoai: 342761815,ngayDatHang: 2024-12-15T04:47:55.907151400,ngayNhanHang: 2024-12-15T06:47:55.907151400,trangThai: Chưa Giao,thanhToan: Chưa thanh toán,phiVanChuyen: 51503.0}', '2024-12-15 04:47:55'),
-(85, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-15 22:13:15'),
-(86, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng ký tài khoản', 'Tài khoản lamhongphuc0110@gmail.com đăng ký thành công nhưng chưa xác thực', '2024-12-15 23:51:27'),
-(87, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Tài khoản lamhongphuc0110@gmail.com chưa xác thực', 'Tài khoản lamhongphuc0110@gmail.com xác thực thành công', '2024-12-15 23:51:55'),
-(88, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 12,tenKH: James,email: lamhongphuc0110@gmail.com,matKhau: null,soDT: 123456789,diaChi: abc,maTC: 1,}', '2024-12-15 23:52:21'),
-(89, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-15 23:54:25'),
-(90, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 01:37:27'),
-(91, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 01:42:28'),
-(92, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 01:46:46'),
-(93, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 01:48:59'),
-(94, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 01:55:39'),
-(95, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 02:00:08'),
-(96, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 02:07:33'),
-(97, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 02:13:42'),
-(98, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 02:22:00'),
-(99, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 02:24:11'),
-(100, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 02:27:49'),
-(101, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 02:32:41'),
-(102, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 03:01:23'),
-(103, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 12:22:21'),
-(104, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 12:24:59'),
-(105, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 13:53:57'),
-(106, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 15:26:54'),
-(107, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 15:57:57'),
-(108, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 16:59:32'),
-(109, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 16:59:38'),
-(110, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 17:04:09'),
-(111, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 17:25:16'),
-(112, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 17:44:58'),
-(113, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 11,tenKH: loc hehe,email: tranlocmom@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 1,}', '2024-12-16 17:46:57'),
-(114, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 11,tenKH: loc hehe,email: tranlocmom@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 1,}', '2024-12-16 17:56:14'),
-(115, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 11,tenKH: loc hehe,email: tranlocmom@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 1,}', '2024-12-16 17:58:09'),
-(116, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 11,tenKH: loc hehe,email: tranlocmom@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 1,}', '2024-12-16 18:02:22'),
-(117, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 18:06:15'),
-(118, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 11,tenKH: loc hehe,email: tranlocmom@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 1,}', '2024-12-16 18:06:28'),
-(119, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 18:26:22'),
-(120, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 18:37:20'),
-(121, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 18:43:19'),
-(122, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 18:44:14'),
-(123, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 18:47:27'),
-(124, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 12,tenKH: James,email: lamhongphuc0110@gmail.com,matKhau: null,soDT: 123456789,diaChi: abc,maTC: 1,}', '2024-12-16 18:50:40'),
-(125, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 18:55:42'),
-(126, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 19:37:04'),
-(127, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 11,tenKH: loc hehe,email: tranlocmom@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 1,}', '2024-12-16 19:37:17'),
-(128, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 19:39:20'),
-(129, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 12,tenKH: James,email: lamhongphuc0110@gmail.com,matKhau: null,soDT: 123456789,diaChi: abc,maTC: 1,}', '2024-12-16 20:35:17'),
-(130, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 20:35:35'),
-(131, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 20:38:28'),
-(132, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 12,tenKH: James,email: lamhongphuc0110@gmail.com,matKhau: null,soDT: 123456789,diaChi: abc,maTC: 1,}', '2024-12-16 21:12:16'),
-(133, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 21:12:28'),
-(134, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 12,tenKH: James,email: lamhongphuc0110@gmail.com,matKhau: null,soDT: 123456789,diaChi: abc,maTC: 1,}', '2024-12-16 21:16:48'),
-(135, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'Chưa đăng nhập', '{maKH: 9,tenKH: locadmin,email: tuitenlocbikhung@gmail.com,matKhau: null,soDT: 342761815,diaChi: tp.hcm ,maTC: 2,}', '2024-12-16 21:16:59');
+(84, 'INFO', '0:0:0:0:0:0:0:1', 'khachhang', 'null', '{maDH: 2855,maKH: 11,diaChiNhanHang: Phường Linh Trung, Thành phố Thủ Đức, Hồ Chí Minh,soDienThoai: 342761815,ngayDatHang: 2024-12-15T04:47:55.907151400,ngayNhanHang: 2024-12-15T06:47:55.907151400,trangThai: Chưa Giao,thanhToan: Chưa thanh toán,phiVanChuyen: 51503.0}', '2024-12-15 04:47:55');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nguyenlieu`
+-- Cấu trúc bảng cho bảng `nguyenlieu`
 --
 
 DROP TABLE IF EXISTS `nguyenlieu`;
@@ -352,7 +299,7 @@ CREATE TABLE `nguyenlieu` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sanpham`
+-- Cấu trúc bảng cho bảng `sanpham`
 --
 
 DROP TABLE IF EXISTS `sanpham`;
@@ -368,7 +315,7 @@ CREATE TABLE `sanpham` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `sanpham`
+-- Đang đổ dữ liệu cho bảng `sanpham`
 --
 
 INSERT INTO `sanpham` (`maSP`, `tenSP`, `giaGoc`, `giaGiam`, `soLuongTonKho`, `moTa`, `maTL`, `maAnh`) VALUES
@@ -424,7 +371,7 @@ INSERT INTO `sanpham` (`maSP`, `tenSP`, `giaGoc`, `giaGiam`, `soLuongTonKho`, `m
 -- --------------------------------------------------------
 
 --
--- Table structure for table `theloai`
+-- Cấu trúc bảng cho bảng `theloai`
 --
 
 DROP TABLE IF EXISTS `theloai`;
@@ -434,7 +381,7 @@ CREATE TABLE `theloai` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `theloai`
+-- Đang đổ dữ liệu cho bảng `theloai`
 --
 
 INSERT INTO `theloai` (`maTL`, `tenTL`) VALUES
@@ -455,7 +402,7 @@ INSERT INTO `theloai` (`maTL`, `tenTL`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `truycap`
+-- Cấu trúc bảng cho bảng `truycap`
 --
 
 DROP TABLE IF EXISTS `truycap`;
@@ -465,7 +412,7 @@ CREATE TABLE `truycap` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `truycap`
+-- Đang đổ dữ liệu cho bảng `truycap`
 --
 
 INSERT INTO `truycap` (`maTC`, `tinhTrang`) VALUES
@@ -480,7 +427,7 @@ INSERT INTO `truycap` (`maTC`, `tinhTrang`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `userkey`
+-- Cấu trúc bảng cho bảng `userkey`
 --
 
 DROP TABLE IF EXISTS `userkey`;
@@ -488,23 +435,21 @@ CREATE TABLE `userkey` (
   `id` int(11) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `publickey` text DEFAULT NULL,
-  `createAt` timestamp NULL DEFAULT current_timestamp(),
+  `creatAt` timestamp NULL DEFAULT current_timestamp(),
   `isActive` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `userkey`
+-- Đang đổ dữ liệu cho bảng `userkey`
 --
 
-INSERT INTO `userkey` (`id`, `user_id`, `publickey`, `createAt`, `isActive`) VALUES
-(1, 11, 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsCn2na8ENB8Gd2/aeY8fyWWChqTg9RlB/ewRLlSE5o/x/WDswYtUmbOPomray2Fl2TWZJ6PPhk1pbO5Vtnpi6MGKrZ8Yw0EoS7/hR/RGFtncPdg6rgOUtyANL0XbVey589SmbC78hLyvtM6DE+DRh8YAIVfQ2b0W8qr7jr5+1asHLhyeJsdVnJz2zkyXZOCW9yDZzRF0lykzTHVJZtJaqITSb2UEfnjVFoiHcHCXTJss8E5mpBIsDBpwgBCacHQ2QtK5yd0IsV06FaKeCfA7DcLZMfNWPnGlxs1t/EMGVAsithAaYM4WWFS9/eUu5YAVxd8VSBlPtzw/HUuqb1uNXQIDAQAB', '2024-12-14 17:58:31', 1),
-(2, 12, 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAh5w+d+JguM6z2vmjEKxgvTtGs1Eaq5IoMk/6x0EnJZyW3PVc4h2mxEFNfZ7idMRErMgA1gKaC/S7EDZbkLO6ZrmFinr4nx/fdxEGJhtqhQLLTBFZ7GfBQr547d25sDX+F0uFNz1HODSJhYnwP5Fz9PKLRoPFdOSNyLGt7iu2t9ZumcKyPMosct4K88olcEHaygp7/r1gaTObFjeUKnGwr0Fg+Ru4L0OmPv0FBQ1JLf0DQcHxBejagPEO1O/t3RIGPoAX3e7EoRWcHH4F/oaDYJCcm7WCwWLq9qo31eVtp5iD1Wq0LtFVy4h1rF0woZRBn8BCY3sDjcH6i97iq8ESJwIDAQAB', '2024-12-15 16:52:10', 0),
-(7, 12, 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmadr5PqhXpvWqtOn2AIiS2iZxo1hLeX6i80VM87IKbOIFCeJAv3twa0ZNg2t9e2fq6EsLwybPHLxrX5/0etnbSf176yP/gBgKF3Kqv6k0wG7TTddfTRoyqrxK5nodqq8n4a7kLoSmZPxPN4Ld0I2w/xMXyN2gHW4PhZPoW7UprSQ6Chilrp3EEXIDGdwPudf0Vaa8mAsbD/q5hr0WS96ohptyIFjXdyE3D2EmAuzR8MbgUQUU94VC/dRZgnZsJpjumqDOd2y2kUP5cWS9beeDHfGe7cMtntcmtlsjsjckKMJBFPe6CYmxRJzdIlE8Q+FcYHWsoRgtApO4fsDWo36gQIDAQAB', '2024-12-16 14:24:21', 1);
+INSERT INTO `userkey` (`id`, `user_id`, `publickey`, `creatAt`, `isActive`) VALUES
+(1, 11, 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsCn2na8ENB8Gd2/aeY8fyWWChqTg9RlB/ewRLlSE5o/x/WDswYtUmbOPomray2Fl2TWZJ6PPhk1pbO5Vtnpi6MGKrZ8Yw0EoS7/hR/RGFtncPdg6rgOUtyANL0XbVey589SmbC78hLyvtM6DE+DRh8YAIVfQ2b0W8qr7jr5+1asHLhyeJsdVnJz2zkyXZOCW9yDZzRF0lykzTHVJZtJaqITSb2UEfnjVFoiHcHCXTJss8E5mpBIsDBpwgBCacHQ2QtK5yd0IsV06FaKeCfA7DcLZMfNWPnGlxs1t/EMGVAsithAaYM4WWFS9/eUu5YAVxd8VSBlPtzw/HUuqb1uNXQIDAQAB', '2024-12-14 17:58:31', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `xacthuc`
+-- Cấu trúc bảng cho bảng `xacthuc`
 --
 
 DROP TABLE IF EXISTS `xacthuc`;
@@ -515,50 +460,50 @@ CREATE TABLE `xacthuc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `anh`
+-- Chỉ mục cho bảng `anh`
 --
 ALTER TABLE `anh`
   ADD PRIMARY KEY (`maAnh`),
   ADD KEY `FK_anh_sanpham` (`maSP`);
 
 --
--- Indexes for table `chitiet_donhang`
+-- Chỉ mục cho bảng `chitiet_donhang`
 --
 ALTER TABLE `chitiet_donhang`
   ADD KEY `FK_chitiet_donhang_donhang` (`maDH`),
   ADD KEY `FK_chitiet_donhang_sanpham` (`maSP`);
 
 --
--- Indexes for table `donhang`
+-- Chỉ mục cho bảng `donhang`
 --
 ALTER TABLE `donhang`
   ADD PRIMARY KEY (`maDH`);
 
 --
--- Indexes for table `khachhang`
+-- Chỉ mục cho bảng `khachhang`
 --
 ALTER TABLE `khachhang`
   ADD PRIMARY KEY (`maKH`),
   ADD KEY `FK_khachhang_truycap` (`maTC`) USING BTREE;
 
 --
--- Indexes for table `log`
+-- Chỉ mục cho bảng `log`
 --
 ALTER TABLE `log`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `nguyenlieu`
+-- Chỉ mục cho bảng `nguyenlieu`
 --
 ALTER TABLE `nguyenlieu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `sanpham`
+-- Chỉ mục cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
   ADD PRIMARY KEY (`maSP`),
@@ -566,88 +511,88 @@ ALTER TABLE `sanpham`
   ADD KEY `FK_sanpham_theloai` (`maTL`);
 
 --
--- Indexes for table `theloai`
+-- Chỉ mục cho bảng `theloai`
 --
 ALTER TABLE `theloai`
   ADD PRIMARY KEY (`maTL`);
 
 --
--- Indexes for table `truycap`
+-- Chỉ mục cho bảng `truycap`
 --
 ALTER TABLE `truycap`
   ADD PRIMARY KEY (`maTC`);
 
 --
--- Indexes for table `userkey`
+-- Chỉ mục cho bảng `userkey`
 --
 ALTER TABLE `userkey`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `xacthuc`
+-- Chỉ mục cho bảng `xacthuc`
 --
 ALTER TABLE `xacthuc`
   ADD PRIMARY KEY (`id`,`email`) USING BTREE;
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `khachhang`
+-- AUTO_INCREMENT cho bảng `khachhang`
 --
 ALTER TABLE `khachhang`
-  MODIFY `maKH` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `maKH` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `log`
+-- AUTO_INCREMENT cho bảng `log`
 --
 ALTER TABLE `log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
 
 --
--- AUTO_INCREMENT for table `nguyenlieu`
+-- AUTO_INCREMENT cho bảng `nguyenlieu`
 --
 ALTER TABLE `nguyenlieu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `userkey`
+-- AUTO_INCREMENT cho bảng `userkey`
 --
 ALTER TABLE `userkey`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `xacthuc`
+-- AUTO_INCREMENT cho bảng `xacthuc`
 --
 ALTER TABLE `xacthuc`
   MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `anh`
+-- Các ràng buộc cho bảng `anh`
 --
 ALTER TABLE `anh`
   ADD CONSTRAINT `FK_anh_sanpham` FOREIGN KEY (`maSP`) REFERENCES `sanpham` (`maSP`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `chitiet_donhang`
+-- Các ràng buộc cho bảng `chitiet_donhang`
 --
 ALTER TABLE `chitiet_donhang`
   ADD CONSTRAINT `FK_chitiet_donhang_donhang` FOREIGN KEY (`maDH`) REFERENCES `donhang` (`maDH`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `FK_chitiet_donhang_sanpham` FOREIGN KEY (`maSP`) REFERENCES `sanpham` (`maSP`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `khachhang`
+-- Các ràng buộc cho bảng `khachhang`
 --
 ALTER TABLE `khachhang`
   ADD CONSTRAINT `FK_khachhang_truycap` FOREIGN KEY (`maTC`) REFERENCES `truycap` (`maTC`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
--- Constraints for table `sanpham`
+-- Các ràng buộc cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
   ADD CONSTRAINT `FK_sanpham_anh` FOREIGN KEY (`maAnh`) REFERENCES `anh` (`maAnh`) ON DELETE NO ACTION ON UPDATE NO ACTION,
