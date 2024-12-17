@@ -1,0 +1,150 @@
+
+/*body*/
+.all-form{
+    box-sizing: border-box !important; 
+    font-family: 'Roboto', sans-serif;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    /* font-size: 1.9rem;   */
+    /* background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA 51%, #77A1D3 100%); */
+}
+
+.background-login_img{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#footer{
+    display: flex;
+    position: absolute;
+    width: 100%;
+}
+
+#header{
+    position: absolute !important;
+}
+
+.container-form{
+    color: black;
+    width: 461px;
+    height: 483px;
+    border: 5px solid var(--background-header-color);
+    border-radius: 5px;
+    z-index: 5;
+    background-color: white;
+}
+
+.container-form .h8 {
+    padding-top:15px;
+    font-size: 2.2rem;
+    font-weight: 400;
+    text-align: center;
+    font-weight: bold;
+}
+
+.payment-input {
+    width: 100%;
+    padding-top:3px;
+    margin-top: -19px;
+    padding-right: 29px;
+    padding-left:29px;
+    outline: none;
+    font-size: 1.8rem;
+    font-weight: 400;
+}
+
+.payment-input:focus {
+    border: 2px solid #777;
+    box-shadow: none;
+}
+.payment-input input{
+    padding: 10px 15px;
+    outline: none;
+}
+
+.text-payment {
+    padding-bottom:10px;
+    font-size: 1.8rem;
+    font-weight: 400;
+    padding-top:3px;
+}
+
+.payment-button {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    /* background-image: linear-gradient(to right, #77A1D3 0%, #79CBCA 51%, #77A1D3 100%); */
+    background: var(--primary-color);
+    color: #fff;
+    transition: 0.5s;
+    background-size: 200% auto;
+    /* padding: -20px -20px -20px -20px;
+    margin-top: 10px; */
+    border-radius: 10px;
+
+}
+.pay{
+    top: 0;
+    left: 0;
+    bottom: 0;
+    top: 0;
+    align-content: center;
+    font-size: 2rem;
+}
+.fa-arrow-right{
+    display: flex;
+    position: relative;
+    left:30%;
+    bottom:8%;
+}
+
+.payment-button:hover {
+    cursor: pointer;
+    background-position: right center;
+    color: var(--background-header-color);
+    text-decoration: none;
+}
+
+.payment-button:hover .fas.fa-arrow-right {
+    transform: translate(15px);
+    transition: transform 0.2s ease-in;
+}
+
+.col-13{
+    padding: 29px;
+}
+
+.col-12{
+    padding-top: 5px
+}
+
+.col-6 {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 5px;
+}
+
+.col-6 .payment-input{
+    margin-right: -30px;
+}
+
+.payment-input:last-child {
+    margin-right: 0; /* Loại bỏ khoảng cách cho input cuối cùng */
+}
+
+
+
+
+
+
+
+

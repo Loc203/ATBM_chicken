@@ -393,7 +393,7 @@ public class KhachHangDAO {
 
     public static List<KhachHang> getAll() {
         String query = "SELECT kh.maKH, kh.tenKH, kh.email, kh.matKhau, kh.soDT, kh.gioiTinh, kh.ngaySinh, kh.diaChi, " +
-                "tc.maTC, tc.tinhTrang " +
+                "tc.maTC, tc.tinhTrang, kh.alertKey " +
                 "FROM khachhang kh " +
                 "JOIN truycap tc ON kh.maTC = tc.maTC";
         List<KhachHang> khachHangs = new ArrayList<>();
@@ -403,6 +403,7 @@ public class KhachHangDAO {
                             .map((rs, ctx) -> {
                                 int maKH = rs.getInt("maKH");
                                 String tenKH = rs.getString("tenKH");
+
                                 String email = rs.getString("email");
                                 String matKhau = rs.getString("matKhau");
                                 String soDt = rs.getString("soDT");
@@ -413,8 +414,9 @@ public class KhachHangDAO {
                                 int maTC = rs.getInt("maTC");
                                 String tinhTrang = rs.getString("tinhTrang");
                                 TruyCap truyCap = new TruyCap(maTC, tinhTrang);
+                                int alertKey = rs.getInt("alertKey");
 
-                                return new KhachHang(maKH, tenKH, email, matKhau, soDt, gioiTinh, ngaySinh, diaChi, maTC);
+                                return new KhachHang(maKH, tenKH, email, matKhau, soDt, gioiTinh, ngaySinh, diaChi, maTC, alertKey);
                             })
                             .list());
         } catch (Exception e) {
@@ -470,6 +472,24 @@ public class KhachHangDAO {
         }
 
         return false;
+    }
+    public static boolean updateAlert(int maKH){
+        String updateQuery = "UPDATE khachhang SET alertKey = 0 WHERE maKH = ?";
+        int rowsAffected = JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate(updateQuery)
+                        .bind(0, maKH)
+                        .execute()
+        );
+        return rowsAffected > 0;
+    }
+    public static boolean updateAlertKey(int maKH){
+        String updateQuery = "UPDATE khachhang SET alertKey = 1 WHERE maKH = ?";
+        int rowsAffected = JDBIConnector.me().withHandle(handle ->
+                handle.createUpdate(updateQuery)
+                        .bind(0, maKH)
+                        .execute()
+        );
+        return rowsAffected > 0;
     }
 
     public static boolean deleteKhachHang(KhachHang khachHang) {
@@ -693,5 +713,4 @@ public class KhachHangDAO {
             return null;
         }
     }
-
 }

@@ -68,6 +68,19 @@ public class DonHang extends AbsModel implements Serializable, IModel {
         this.tenKH = tenKH;
         this.phiVanChuyen = phiVanChuyen;
     }
+    public DonHang(int maDH, int maKH, String diaChiNhanHang, String soDienThoai, LocalDateTime ngayDatHang, LocalDateTime ngayNhanHang, String trangThai, String thanhToan, String tenKH, double phiVanChuyen, String signature) {
+        this.maDH = maDH;
+        this.maKH = maKH;
+        this.diaChiNhanHang = diaChiNhanHang;
+        this.soDienThoai = soDienThoai;
+        this.ngayDatHang = ngayDatHang;
+        this.ngayNhanHang = ngayNhanHang;
+        this.trangThai = trangThai;
+        this.thanhToan = thanhToan;
+        this.tenKH = tenKH;
+        this.phiVanChuyen = phiVanChuyen;
+        this.signature = signature;
+    }
 
     public DonHang(int maDH, int maKH, String diaChiNhanHang, String soDienThoai, LocalDateTime ngayDatHang, LocalDateTime ngayNhanHang, String trangThai, String thanhToan, double phiVanChuyen) {
         this.maDH = maDH;
