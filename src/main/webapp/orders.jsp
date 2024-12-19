@@ -52,7 +52,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
-
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.6/css/dataTables.dataTables.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
           integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
@@ -556,20 +555,34 @@
             $.ajax({
                 url: "CheckOrderSignatureController", // Đường dẫn đến Servlet
                 type: "POST",
+                dataType: 'text',
                 data: {maDH : orderID, maKH : userID},
                 success: function (response) {
-                    if (response.trim() === "Valid") {
+                    if (response === "Valid") {
                         // Nếu dữ liệu hợp lệ
-                        alert("Don hang hop le!.");
-                       // console.log("true");
+                        // alert("Thông tin đơn hàng hợp lệ!.");
+                        Swal.fire({
+                            title: 'Xác minh đơn hàng thành công!',
+                            text: 'Thông tin đơn hàng hợp lệ!.',
+                            icon: 'success', // Các icon khác: 'error', 'warning', 'info', 'question'
+                            confirmButtonText: 'OK'
+                        });
                     } else {
                         // Hiển thị thông báo lỗi nếu không hợp lệ
-                        alert("Thong tin don hang da duoc thay doi, vui long kiem tra lai.");
-                       // console.log("false");
+                        // alert("Thông tin của đơn hàng đã bị thay đổi, vui lòng kiểm tra lại!.");
+                        Swal.fire({
+                            title: 'Xác minh đơn hàng thành công!',
+                            text: 'Thông tin của đơn hàng đã bị thay đổi, vui lòng kiểm tra lại!.',
+                            icon: 'error', // Các icon khác: 'error', 'warning', 'info', 'question'
+                            confirmButtonText: 'OK'
+                        });
                     }
                 },
-                error: function () {
-                    console.log("Da co loi xay ra!");
+                error: function (xhr, status, error) {
+                    console.error("Đã xảy ra lỗi khi gửi request:");
+                    console.error("Lỗi: " + error);
+                    console.error("Trạng thái: " + status);
+                    console.error("Phản hồi từ server: " + xhr.responseText);
                 }
             });
         }
