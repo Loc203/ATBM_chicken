@@ -35,7 +35,7 @@ public class DonHangService {
     public DonHang getOrderById(int id) { return DonHangDAO.getOrderById(id);}
 
     public static void main(String[] args) {
-        DonHang donhang = DonHangService.getInstance().getOrderById(1);
+        DonHang donhang = DonHangService.getInstance().getOrderById(19331);
         System.out.println(donhang);
         //        DonHang donHang = new DonHang(0, "abc", LocalDateTime.now(), LocalDateTime.now(), "chưa giao", "COD");
 //        int themDonHang = DonHangService.getInstance().insertDonHang(donHang);

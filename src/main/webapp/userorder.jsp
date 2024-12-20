@@ -29,6 +29,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Xem đơn hàng</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
     <link rel="stylesheet" href="./assets/css/base.css">
     <link rel="stylesheet" href="./assets/css/grid.css">
@@ -65,11 +68,13 @@
                     <ul class="navbar__list">
                         <li class="navbar__list--item">
                             <a href="#" class="navbar__list--link">
-                                <i class="navbar__list-icon fa-regular fa-user"><%=email%>
+                                <!-- Sẽ thay đổi dựa trên dữ liệu -->
+                                <i class="navbar__list-icon fa-regular fa-user"><%= email %>
                                 </i>
                             </a>
                             <div class="account__info">
-                                <a href="logout" class="account_setting">Đổi tài khoản</a>
+                                <a href="logout" class="account_setting" style="margin-top: -10%;">Đổi tài khoản</a>
+                                <a href="reportkey" class="account_setting" style="margin-top: 4%;">Báo cáo khóa</a>
                             </div>
                         </li>
                     </ul>
@@ -139,16 +144,35 @@
                             </div>
                             <div class="rc-content">
                                 <% if (donHangList != null && !donHangList.isEmpty()) { %>
-                                <ul>
+                                <table id="orderTable" class="display" style="width:100%">
+                                    <thead>
+                                    <tr>
+                                        <th>Mã Đơn Hàng</th>
+                                        <th>Hành Động</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
                                     <% for (DonHang donHang : donHangList) { %>
-                                    <li style="padding-bottom: 12px;">
-                                        Đơn Hàng <%= donHang.getMaDH() %> :
-                                        <a href="orderTracking.jsp?maDH=<%= donHang.getMaDH() %>&trangThai=<%= URLEncoder.encode(donHang.getTrangThai(), "UTF-8") %>&ngayNhanHang=<%= URLEncoder.encode(donHang.getNgayNhanHang().toString(), "UTF-8") %>" style="text-decoration: none; color: blue; font-weight: bold;">
-                                            xem trạng thái đơn hàng
-                                        </a>
-                                    </li>
+                                    <tr>
+                                        <td><%= donHang.getMaDH() %>
+                                        </td>
+                                        <td>
+                                            <a href="orderTracking.jsp?maDH=<%= donHang.getMaDH() %>&trangThai=<%= URLEncoder.encode(donHang.getTrangThai(), "UTF-8") %>&ngayNhanHang=<%= URLEncoder.encode(donHang.getNgayNhanHang().toString(), "UTF-8") %>"
+                                               style="display: inline-block; padding: 10px 15px; background-color: #d4edda; color: #155724; font-weight: bold; text-decoration: none; border-radius: 5px; border: 1px solid #c3e6cb;">
+                                                Xem trạng thái đơn hàng
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <button onclick="downloadOrderDetails(<%= donHang.getMaDH() %>)"
+                                                    style="padding: 8px 12px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                                                Download
+                                            </button>
+                                        </td>
+                                    </tr>
                                     <% } %>
-                                </ul>
+                                    </tbody>
+                                </table>
                                 <% } else { %>
                                 <p>Không có đơn hàng nào.</p>
                                 <% } %>
@@ -168,9 +192,11 @@
         .rc-title {
             margin: 0;
         }
+
         .rc-desc {
             margin: 5px 0 0;
         }
+
         .rc-content {
             padding: 20px;
             background-color: #fff;
@@ -180,5 +206,56 @@
             font-size: 1.6rem;
         }
     </style>
+            <script>
+                $(document).ready(function () {
+                    $('#orderTable').DataTable({
+                        "language": {
+                            "lengthMenu": "Hiển thị _MENU_ đơn hàng mỗi trang",
+                            "zeroRecords": "Không tìm thấy đơn hàng nào",
+                            "info": "Hiển thị trang _PAGE_ trên tổng số _PAGES_",
+                            "infoEmpty": "Không có dữ liệu",
+                            "infoFiltered": "(lọc từ _MAX_ đơn hàng)",
+                            "search": "Tìm kiếm:",
+                            "paginate": {
+                                "first": "Đầu",
+                                "last": "Cuối",
+                                "next": "Tiếp",
+                                "previous": "Trước"
+                            }
+                        }
+                    });
+                });
+
+                function downloadOrderDetails(maDH) {
+                    fetch(`/ClipboardOrderDetail?maDH=${maDH}`)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! Status: ${response.status}`);
+                            }
+                            return response.text(); // Get the response text directly
+                        })
+                        .then(data => {
+                            // Create a Blob with the raw data from the response
+                            const blob = new Blob([data], { type: 'text/plain' });
+                            const url = URL.createObjectURL(blob);
+
+                            // Create an anchor element to trigger download
+                            const a = document.createElement('a');
+                            a.href = url;
+                            a.download = `Order_${maDH}_Details.txt`;
+                            document.body.appendChild(a);
+                            a.click();
+
+                            // Clean up
+                            document.body.removeChild(a);
+                            URL.revokeObjectURL(url);
+                        })
+                        .catch(error => {
+                            console.error('Error fetching order details:', error);
+                            alert('Failed to download order details.');
+                        });
+                }
+
+            </script>
 </body>
 </html>

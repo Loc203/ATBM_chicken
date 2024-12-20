@@ -9,7 +9,7 @@
     if (userCheck == null || userCheck.getMaTC() != 2 && userCheck.getMaTC() != 4) {
         response.sendRedirect("/trangchu");
         return;
-    }else if (userCheck.getMaTC() == -1) {
+    } else if (userCheck.getMaTC() == -1) {
 %>
 <!-- Cho ra trang sau nếu maTC của người dùng trùng với bị cấm(a.k.a -1) -->
 <!DOCTYPE html>
@@ -52,7 +52,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
-
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.6/css/dataTables.dataTables.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
           integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
@@ -82,6 +81,12 @@
     <link rel="stylesheet" href="./assets/fonts/fontawesome-free-6.4.2-web/css/all.min.css">
     <%@ page import="Cart.GioHang" %>
     <%@ page import="model.KhachHang" %>
+    <%@ page import="model.ChiTiet_DonHang" %>
+    <%@ page import="dao.ChiTietDonHangDAO" %>
+    <%@ page import="java.sql.SQLException" %>
+    <%@ page import="service.DonHangService" %>
+    <%@ page import="entity.PublicKeyUser" %>
+    <%@ page import="service.UserKeyService" %>
     <%@page contentType="text/html;charset=UTF-8" language="java" %>
     <%
         GioHang gh = (GioHang) session.getAttribute("cart");
@@ -128,7 +133,8 @@
                                 VỀ KFP
                             </a>
                         </li>
-                        <li class="navbar__list--item navbar__list--user" style="margin-right: -4px;margin-bottom: -33px;">
+                        <li class="navbar__list--item navbar__list--user"
+                            style="margin-right: -4px;margin-bottom: -33px;">
                             <div class="dropdown" style="margin-right: 5px; display: flex; align-items: center;">
                                 <i class="navbar__list-icon fa-regular fa-user"
                                    style="margin-right: 5px; display: flex; align-items: center;"></i>
@@ -201,7 +207,7 @@
                             <a href="giohang" class="navbar__list--link">
                                 <i class="navbar__list-icon fa-solid fa-cart-shopping" style="margin-bottom: 5px"></i>
                             </a>
-                            <div class="cart-quantity" style ="top: 28px">
+                            <div class="cart-quantity" style="top: 28px">
                                     <span class="quantity">
                                         <%= gh.getToTal()%>
                                     </span>
@@ -326,7 +332,8 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="receiveDate">Ngày Nhận Hàng:</label>
-                                                                <input type="datetime-local" class="form-control" id="receiveDate"
+                                                                <input type="datetime-local" class="form-control"
+                                                                       id="receiveDate"
                                                                        name="ngayNhanHang">
                                                             </div>
                                                             <div class="form-group">
@@ -336,8 +343,11 @@
                                                                     <option value="Chưa Giao">Chưa giao</option>
                                                                     <option value="Đã Bàn Giao">Đã Bàn giao</option>
                                                                     <option value="Đang Giao">Đang giao</option>
-                                                                    <option value="Giao Thành Công">Giao Thành Công</option>
-                                                                    <option value="Giao Hàng Không Thành Công">Giao Hàng Không Thành Công</option>
+                                                                    <option value="Giao Thành Công">Giao Thành Công
+                                                                    </option>
+                                                                    <option value="Giao Hàng Không Thành Công">Giao Hàng
+                                                                        Không Thành Công
+                                                                    </option>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group">
@@ -391,7 +401,8 @@
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="receiveDateED">Ngày Nhận Hàng:</label>
-                                                                <input type="datetime-local" class="form-control" id="receiveDateED"
+                                                                <input type="datetime-local" class="form-control"
+                                                                       id="receiveDateED"
                                                                        name="ngayNhanHang">
                                                             </div>
                                                             <div class="form-group">
@@ -401,8 +412,11 @@
                                                                     <option value="Chưa Giao">Chưa giao</option>
                                                                     <option value="Đã Bàn Giao">Đã Bàn giao</option>
                                                                     <option value="Đang Giao">Đang giao</option>
-                                                                    <option value="Giao Thành Công">Giao Thành Công</option>
-                                                                    <option value="Giao Hàng Không Thành Công">Giao Hàng Không Thành Công</option>
+                                                                    <option value="Giao Thành Công">Giao Thành Công
+                                                                    </option>
+                                                                    <option value="Giao Hàng Không Thành Công">Giao Hàng
+                                                                        Không Thành Công
+                                                                    </option>
                                                                 </select>
                                                             </div>
                                                             <div class="form-group">
@@ -416,7 +430,8 @@
                                                             </div>
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <input type="submit" class="btn btn-primary" id="saveEditBtn"
+                                                            <input type="submit" class="btn btn-primary"
+                                                                   id="saveEditBtn"
                                                                    value="Lưu">
                                                             <button type="button" class="btn btn-secondary"
                                                                     data-dismiss="modal">Đóng
@@ -459,16 +474,18 @@
                 dataSrc: ''
             },
             columns: [
-                { data: 'maDH' },
-                { data: 'tenKH' },
-                { data: 'diaChiNhanHang' },
-                { data: 'ngayNhanHang' },
-                { data: 'trangThai',
+                {data: 'maDH'},
+                {data: 'tenKH'},
+                {data: 'diaChiNhanHang'},
+                {data: 'ngayNhanHang'},
+                {
+                    data: 'trangThai',
                     render: function (data, type, row) {
                         return '<button type="button" class="orderDetailBtn btn-warning" onclick="handleOrderTracking(\'' + row.maDH + '\', \'' + data + '\', \'' + row.ngayNhanHang + '\')">Trạng thái</button>';
                     }
                 },
-                { data: 'phiVanChuyen',
+                {
+                    data: 'phiVanChuyen',
                     visible: false
                 },
 
@@ -488,7 +505,7 @@
                 {
                     data: 'maDH',
                     render: function (data, type, row) {
-                        return '<button type="button" class="orderDetailBtn btn-info" onclick="viewOrderDetails(' + data + ', \'' + row.ngayDatHang + '\',\'' + row.phiVanChuyen +'\')">Chi tiết</button>';
+                        return '<button type="button" class="orderDetailBtn btn-info" onclick="viewOrderDetails(' + data + ', \'' + row.ngayDatHang + '\',\'' + row.phiVanChuyen + '\')">Chi tiết</button>';
                     }
                 },
                 {
@@ -535,13 +552,46 @@
             console.log(orderID);
             console.log(userID);
             console.log(signature);
+            $.ajax({
+                url: "CheckOrderSignatureController", // Đường dẫn đến Servlet
+                type: "POST",
+                dataType: 'text',
+                data: {maDH : orderID, maKH : userID},
+                success: function (response) {
+                    if (response === "Valid") {
+                        // Nếu dữ liệu hợp lệ
+                        // alert("Thông tin đơn hàng hợp lệ!.");
+                        Swal.fire({
+                            title: 'Xác minh đơn hàng thành công!',
+                            text: 'Thông tin đơn hàng hợp lệ!.',
+                            icon: 'success', // Các icon khác: 'error', 'warning', 'info', 'question'
+                            confirmButtonText: 'OK'
+                        });
+                    } else {
+                        // Hiển thị thông báo lỗi nếu không hợp lệ
+                        // alert("Thông tin của đơn hàng đã bị thay đổi, vui lòng kiểm tra lại!.");
+                        Swal.fire({
+                            title: 'Xác minh đơn hàng thành công!',
+                            text: 'Thông tin của đơn hàng đã bị thay đổi, vui lòng kiểm tra lại!.',
+                            icon: 'error', // Các icon khác: 'error', 'warning', 'info', 'question'
+                            confirmButtonText: 'OK'
+                        });
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error("Đã xảy ra lỗi khi gửi request:");
+                    console.error("Lỗi: " + error);
+                    console.error("Trạng thái: " + status);
+                    console.error("Phản hồi từ server: " + xhr.responseText);
+                }
+            });
         }
         // Xử lý nút edit
         $('#dataTable tbody').on('click', 'td.edit', function () {
             var rowIndex = table.cell($(this)).index().row;
             var rowData = table.row(rowIndex).data();
             $('#orderIDED').val(rowData.maDH);
-            $('#KHIDED').val(rowData.maKH)  ;
+            $('#KHIDED').val(rowData.maKH);
             $('#addressED').val(rowData.diaChiNhanHang);
             $('#phoneED').val(rowData.soDienThoai);
             $('#orderDateED').val(rowData.ngayDatHang);
@@ -571,7 +621,7 @@
                             url: 'DonHangListController',
                             type: 'GET',
                             dataType: 'json',
-                            success: function(updatedData) {
+                            success: function (updatedData) {
                                 table.clear().rows.add(updatedData).draw();
 
                                 $('#editDataModal').modal('hide');
@@ -611,7 +661,7 @@
                     $.ajax({
                         url: "DonHangDeleteController",
                         type: "POST",
-                        data: { maDH: maDH },
+                        data: {maDH: maDH},
                         success: function (response) {
                             table.row(rowIndex).remove().draw();
                             Swal.fire({
@@ -624,7 +674,7 @@
                 }
             });
         });
-        window.handleOrderTracking = function(maDH, trangThai, ngayNhanHang) {
+        window.handleOrderTracking = function (maDH, trangThai, ngayNhanHang) {
             if (trangThai === "Giao Hàng Không Thành Công") {
                 Swal.fire({
                     title: "Thông báo",
@@ -633,7 +683,7 @@
                     confirmButtonText: "OK"
                 });
             } else {
-                    location.href = 'orderTracking.jsp?maDH=' + maDH + '&trangThai=' + encodeURIComponent(trangThai) + '&ngayNhanHang=' + encodeURIComponent(ngayNhanHang);
+                location.href = 'orderTracking.jsp?maDH=' + maDH + '&trangThai=' + encodeURIComponent(trangThai) + '&ngayNhanHang=' + encodeURIComponent(ngayNhanHang);
             }
         };
     });
@@ -649,6 +699,7 @@
             }
         });
     });
+
     function viewOrderDetails(maDH, ngayDatHang, phiVanChuyen) {
         window.location.href = 'CTDHController?maDH=' + maDH + '&ngayDatHang=' + ngayDatHang + '&phiVanChuyen=' + phiVanChuyen;
     }
@@ -664,10 +715,12 @@
         padding: 4px;
         margin: 0 4px;
     }
+
     .dt-button:hover {
-        background-color: rgba(154,205,50,0.6);
+        background-color: rgba(154, 205, 50, 0.6);
         transition: linear 0.3s;
     }
+
     .orderDetailBtn {
         width: 65px;
         height: 25px;
@@ -675,6 +728,7 @@
         color: black;
         border-radius: 4px;
     }
+
     .btn-warning {
         width: 80px;
     }

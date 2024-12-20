@@ -61,12 +61,14 @@
                     <ul class="navbar__list">
                         <li class="navbar__list--item">
                             <a href="#" class="navbar__list--link">
-                                <!--                                Sẽ thay đổi dựa trong dữ liệu   -->
+                                <!-- Sẽ thay đổi dựa trên dữ liệu -->
                                 <i class="navbar__list-icon fa-regular fa-user"><%= email %>
                                 </i>
                             </a>
                             <div class="account__info">
-                                <a href="logout" class="account_setting">Đổi tài khoản</a>
+                                <a href="logout" class="account_setting" style="margin-top: -10%;">Đổi tài khoản</a>
+                                <a href="reportkey" class="account_setting" style="margin-top: 4%;">Báo cáo khóa</a>
+
                             </div>
                         </li>
                     </ul>
