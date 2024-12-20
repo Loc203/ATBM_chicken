@@ -54,34 +54,34 @@
     %>
 
     <!-- Begin: Header -->
-            <header id="header">
-                <div class="grid wide">
-                    <nav class="navbar">
-                        <div class="hlogo">
-                            <div class="navbar__logo">
-                                <a href="trangchu" class="navbar__logo--link">
-                                    <img src="./assets/img/logo/logo-2.jpg" alt="" class="navbar__logo--img">
-                                </a>
-                            </div>
-                        </div>
-                        <div class="navbar__content">
-                            <ul class="navbar__list">
-                                <li class="navbar__list--item">
-                                    <a href="#" class="navbar__list--link">
-                                        <!-- Sẽ thay đổi dựa trên dữ liệu -->
-                                        <i class="navbar__list-icon fa-regular fa-user"><%= email %>
-                                        </i>
-                                    </a>
-                                    <div class="account__info">
-                                        <a href="logout" class="account_setting" style="margin-top: -10%;">Đổi tài khoản</a>
-                                        <a href="reportkey" class="account_setting" style="margin-top: 4%;">Báo cáo khóa</a>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
+    <header id="header">
+        <div class="grid wide">
+            <nav class="navbar">
+                <div class="hlogo">
+                    <div class="navbar__logo">
+                        <a href="trangchu" class="navbar__logo--link">
+                            <img src="./assets/img/logo/logo-2.jpg" alt="" class="navbar__logo--img">
+                        </a>
+                    </div>
                 </div>
-            </header>
+                <div class="navbar__content">
+                    <ul class="navbar__list">
+                        <li class="navbar__list--item">
+                            <a href="#" class="navbar__list--link">
+                                <!-- Sẽ thay đổi dựa trên dữ liệu -->
+                                <i class="navbar__list-icon fa-regular fa-user"><%= email %>
+                                </i>
+                            </a>
+                            <div class="account__info">
+                                <a href="logout" class="account_setting" style="margin-top: -10%;">Đổi tài khoản</a>
+                                <a href="reportkey" class="account_setting" style="margin-top: 4%;">Báo cáo khóa</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
 
 
     <div class="app__content">
@@ -149,17 +149,25 @@
                                     <tr>
                                         <th>Mã Đơn Hàng</th>
                                         <th>Hành Động</th>
+                                        <th></th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <% for (DonHang donHang : donHangList) { %>
                                     <tr>
-                                        <td><%= donHang.getMaDH() %></td>
+                                        <td><%= donHang.getMaDH() %>
+                                        </td>
                                         <td>
                                             <a href="orderTracking.jsp?maDH=<%= donHang.getMaDH() %>&trangThai=<%= URLEncoder.encode(donHang.getTrangThai(), "UTF-8") %>&ngayNhanHang=<%= URLEncoder.encode(donHang.getNgayNhanHang().toString(), "UTF-8") %>"
                                                style="display: inline-block; padding: 10px 15px; background-color: #d4edda; color: #155724; font-weight: bold; text-decoration: none; border-radius: 5px; border: 1px solid #c3e6cb;">
                                                 Xem trạng thái đơn hàng
                                             </a>
+                                        </td>
+                                        <td>
+                                            <button onclick="downloadOrderDetails(<%= donHang.getMaDH() %>)"
+                                                    style="padding: 8px 12px; background-color: #28a745; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                                                Download
+                                            </button>
                                         </td>
                                     </tr>
                                     <% } %>
@@ -184,9 +192,11 @@
         .rc-title {
             margin: 0;
         }
+
         .rc-desc {
             margin: 5px 0 0;
         }
+
         .rc-content {
             padding: 20px;
             background-color: #fff;
@@ -197,7 +207,7 @@
         }
     </style>
             <script>
-                $(document).ready(function() {
+                $(document).ready(function () {
                     $('#orderTable').DataTable({
                         "language": {
                             "lengthMenu": "Hiển thị _MENU_ đơn hàng mỗi trang",
@@ -215,6 +225,37 @@
                         }
                     });
                 });
+
+                function downloadOrderDetails(maDH) {
+                    fetch(`/ClipboardOrderDetail?maDH=${maDH}`)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error(`HTTP error! Status: ${response.status}`);
+                            }
+                            return response.text(); // Get the response text directly
+                        })
+                        .then(data => {
+                            // Create a Blob with the raw data from the response
+                            const blob = new Blob([data], { type: 'text/plain' });
+                            const url = URL.createObjectURL(blob);
+
+                            // Create an anchor element to trigger download
+                            const a = document.createElement('a');
+                            a.href = url;
+                            a.download = `Order_${maDH}_Details.txt`;
+                            document.body.appendChild(a);
+                            a.click();
+
+                            // Clean up
+                            document.body.removeChild(a);
+                            URL.revokeObjectURL(url);
+                        })
+                        .catch(error => {
+                            console.error('Error fetching order details:', error);
+                            alert('Failed to download order details.');
+                        });
+                }
+
             </script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 package controller;
 
+import com.google.gson.Gson;
 import dao.ChiTietDonHangDAO;
 import dao.UserkeyDAO;
 import entity.ElectronicSignature;
@@ -23,47 +24,34 @@ import java.sql.SQLException;
 import java.util.List;
 @WebServlet(name = "ClipboardOrderDetail", value = "/ClipboardOrderDetail")
 public class ClipboardOrderDetail extends HttpServlet {
-    UserkeyDAO userkeyDAO = new UserkeyDAO();
-    PublicKeyUser publicKeyUser = new PublicKeyUser();
-    UserKeyService userKeyService = new UserKeyService();
-    DonHang donHang;
-    String publickey;
 
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
-        int maDH = Integer.parseInt(req.getParameter("maDH"));
-        int maKH = Integer.parseInt(req.getParameter("maKH"));
 
-        List<ChiTiet_DonHang> orderDetail = ChiTietDonHangDAO.getCTDHByMaDH(maDH);
-        String orderDetailString = orderDetail.toString();
         try {
-            publicKeyUser = userKeyService.findKeyActiveByUserId(maKH);
-            publickey = publicKeyUser.getPublicKey();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-        donHang = DonHangService.getInstance().getOrderById(maDH);
-        String orderSignature = donHang.getSignature();
-        boolean isValid = false;
-        try {
-            isValid = ElectronicSignature.checkSignature(publickey, orderDetailString, orderSignature);
-        } catch (InvalidKeySpecException e) {
-            throw new RuntimeException(e);
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        } catch (InvalidKeyException e) {
-            throw new RuntimeException(e);
-        } catch (SignatureException e) {
-            throw new RuntimeException(e);
-        }
+            int maDH = Integer.parseInt(req.getParameter("maDH"));
 
-        if (isValid){
-            resp.getWriter().write("Valid");
-            return;
-        }else {
-            resp.getWriter().write("inValid");
-            return;
+            // Fetch order details from DAO
+            List<ChiTiet_DonHang> orderDetail = ChiTietDonHangDAO.getCTDHByMaDH(maDH);
+
+            // Convert the list to JSON
+            Gson gson = new Gson();
+            String json = gson.toJson(orderDetail);
+
+            // Write JSON response
+            resp.getWriter().write(json);
+
+        } catch (Exception e) {
+            resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+            resp.getWriter().write("{\"error\": \"Unable to fetch order details.\"}");
+            e.printStackTrace();
         }
     }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doPost(req, resp);
+    }
 }
+
