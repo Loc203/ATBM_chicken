@@ -102,7 +102,7 @@
 
                                         <button type="submit" class="register-btn" style="padding-top: -15px;">ĐĂNG KÝ</button>
                                         </div>
-                                    <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid&redirect_uri=http://localhost:8080/login&response_type=code&client_id=224511662176-ekl8bu51fgqtp04m9dqnegm5ah8d6qjo.apps.googleusercontent.com&approval_prompt=force" class="google-login">
+                                    <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile openid&redirect_uri=https://localhost:8443/login&response_type=code&client_id=224511662176-ekl8bu51fgqtp04m9dqnegm5ah8d6qjo.apps.googleusercontent.com&approval_prompt=force" class="google-login">
                                         <div class="register" style="margin-top: -5px;">
                                             <h3 class="google-text">Đăng ký với Google</h3>
                                             <a href="" class="register-switch">
