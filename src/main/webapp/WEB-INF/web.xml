@@ -4,4 +4,16 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+<!--  Tự động chuyển hướng tới port 8443 -->
+    <security-constraint>
+      <web-resource-collection>
+        <web-resource-name>SecureApp</web-resource-name>
+        <url-pattern>/*</url-pattern>
+      </web-resource-collection>
+      <user-data-constraint>
+        <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+      </user-data-constraint>
+    </security-constraint>
+
 </web-app>
